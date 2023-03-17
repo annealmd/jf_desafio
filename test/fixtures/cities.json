@@ -1,0 +1,32 @@
+[
+  {
+    "nome": "test1",
+    "id": 1,
+    "locale": [1, 2, 4, 5],
+    "UF": { "id": 31, "sigla": "MG", "nome": "Minas Gerais" }
+  },
+  {
+    "nome": "test2",
+    "id": 2,
+    "locale": [1, 2, 4, 5],
+    "UF": { "id": 31, "sigla": "MG", "nome": "Minas Gerais" }
+  },
+  {
+    "nome": "test3",
+    "id": 3,
+    "locale": [1, 2, 4, 5],
+    "UF": { "id": 31, "sigla": "MG", "nome": "Minas Gerais" }
+  },
+  {
+    "nome": "test4",
+    "id": 4,
+    "locale": [1, 2, 4, 5],
+    "UF": { "id": 33, "sigla": "RJ", "nome": "Rio" }
+  },
+  {
+    "nome": "test5",
+    "id": 5,
+    "locale": [1, 2, 4, 5],
+    "UF": { "id": 33, "sigla": "RJ", "nome": "Rio" }
+  }
+]
