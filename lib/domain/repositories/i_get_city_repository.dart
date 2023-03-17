@@ -1,5 +1,5 @@
 import '../entities/client_entity.dart';
 
 abstract class IGetCityRepository {
-  Future<List<CityEntity>> call();
+  Future<List<CityEntity>> call({required int id});
 }

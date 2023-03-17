@@ -29,16 +29,3 @@ void main() {
   });
 }
 
-class GetStateRepository implements IGetStateRepository {
-  final IGetStateDatasource datasource;
-
-  GetStateRepository({required this.datasource});
-  @override
-  Future<List<StateEntity>> call() {
-    return datasource.call();
-  }
-}
-
-abstract class IGetStateDatasource {
-  Future<List<StateModel>> call();
-}

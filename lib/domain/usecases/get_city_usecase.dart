@@ -1,7 +1,7 @@
 import 'package:jf_desafio/domain/domain.dart';
 
 abstract class IGetCityUsecase {
-  Future<List<CityEntity>> call();
+  Future<List<CityEntity>> call({required int id});
 }
 
 class GetCityUsecase implements IGetCityUsecase {
@@ -9,7 +9,7 @@ class GetCityUsecase implements IGetCityUsecase {
 
   GetCityUsecase({required this.repo});
   @override
-  Future<List<CityEntity>> call() async {
-    return await repo.call();
+  Future<List<CityEntity>> call({required int id}) async {
+    return await repo.call(id: id);
   }
 }

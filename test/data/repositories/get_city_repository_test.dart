@@ -17,27 +17,16 @@ void main() {
   });
 
   test('Should return a CityEntity when called', () async {
-    when(() => datasource.call()).thenAnswer((invocation) async => [tModel] );
-    var result = await sut.call();
-    verify(() => datasource()).called(1);
+    when(() => datasource.call(id:any(named: 'id'))).thenAnswer((invocation) async => [tModel] );
+    var result = await sut.call(id: 5);
+    verify(() => datasource(id:5)).called(1);
     expect(result, isA<List<CityEntity>>());
   });
 
   test('Should return the correct object when called', () async {
-    when(() => datasource.call()).thenAnswer((invocation) async => [tModel]);
-    var result = await sut.call();
+    when(() => datasource.call(id:any(named: 'id'))).thenAnswer((invocation) async => [tModel]);
+    var result = await sut.call(id:5);
     expect(result.first.name, 'testCity');
   });
 }
 
-class GetCityRepository implements IGetCityRepository {
-  final IGetCityDatasource datasource;
-
-  GetCityRepository({required this.datasource});
-  
-  @override
-  Future<List<CityEntity>> call() {
-    return datasource.call();
-  }
-
-}

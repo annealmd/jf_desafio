@@ -14,13 +14,13 @@ void main() {
     tCity = CityEntity(name: 'Montes Claros');
   });
   test('Should return the correct object type', () async {
-    when(() => repo()).thenAnswer((invocation) async => [tCity]);
-    var result = await sut();
+    when(() => repo(id:any(named: 'id'))).thenAnswer((invocation) async => [tCity]);
+    var result = await sut(id: 5);
     expect(result, isA<List<CityEntity>>());
   });
   test('Should return the correct object', () async {
-    when(() => repo()).thenAnswer((invocation) async => [tCity]);
-    var result = await sut();
+    when(() => repo(id:any(named: 'id'))).thenAnswer((invocation) async => [tCity]);
+    var result = await sut(id: 5);
     expect(result.first.name, 'Montes Claros');
   });
 }

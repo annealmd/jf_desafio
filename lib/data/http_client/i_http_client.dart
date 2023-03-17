@@ -1,5 +1,5 @@
 abstract class IHttpClient {
-  Future<HttpResponse> getCity();
+  Future<HttpResponse> getCity({required int id});
 
   Future<HttpResponse> getState();
 }
