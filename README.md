@@ -10,6 +10,8 @@
 - entender como api funciona: tenho que descobrir o codigo da UF para depois pegar a lista de municipios
 - como fazer as entities: decidi fazer 3 classes pq a api tem muita informação e pode ser que no futuro haja a decisão de acrescentar mais info sobre as cidades e estados.
 - Domain feito testado.
+- Data feito e testado
+- adaptar pq quando cheguei na chamada de api que caiu a ficha que é uma lista o retorno.
 
 https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome
 [{"id":12,"sigla":"AC","nome":"Acre","regiao":{"id":1,"sigla":"N","nome":"Norte"}}]

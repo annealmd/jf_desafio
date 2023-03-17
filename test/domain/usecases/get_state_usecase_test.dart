@@ -17,15 +17,15 @@ void main() {
   });
 
   test('Should return the correct object type', () async {
-    when(() => repo()).thenAnswer((_) async => tState);
+    when(() => repo()).thenAnswer((_) async => [tState]);
     var result = await sut();
-    expect(result, isA<StateEntity>());
+    expect(result, isA<List<StateEntity>>());
   });
 
   test('Should return the correct object', () async {
-    when(() => repo()).thenAnswer((invocation) async => tState);
+    when(() => repo()).thenAnswer((invocation) async => [tState]);
     var result = await sut();
-    expect(result.uf, 'MG');
+    expect(result.first.uf, 'MG');
   });
 }
 
