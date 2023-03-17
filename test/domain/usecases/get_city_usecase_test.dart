@@ -25,12 +25,3 @@ void main() {
   });
 }
 
-class GetCityUsecase implements IGetCityUsecase {
-  final IGetCityRepository repo;
-
-  GetCityUsecase({required this.repo});
-  @override
-  Future<CityEntity> call() async {
-    return await repo.call();
-  }
-}
