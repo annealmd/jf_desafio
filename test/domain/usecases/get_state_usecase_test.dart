@@ -22,7 +22,7 @@ void main() {
     expect(result, isA<List<StateEntity>>());
   });
 
-  test('Should return the correct object', () async {
+  test('Should return the correct instance', () async {
     when(() => repo()).thenAnswer((invocation) async => [tState]);
     var result = await sut();
     expect(result.first.uf, 'MG');

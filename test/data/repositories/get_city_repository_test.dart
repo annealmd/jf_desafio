@@ -16,14 +16,14 @@ void main() {
     tModel = CityModel(nome: 'testCity');
   });
 
-  test('Should return a CityEntity when called', () async {
+  test('Should return a List<CityEntity> when called', () async {
     when(() => datasource.call(id:any(named: 'id'))).thenAnswer((invocation) async => [tModel] );
     var result = await sut.call(id: 5);
     verify(() => datasource(id:5)).called(1);
     expect(result, isA<List<CityEntity>>());
   });
 
-  test('Should return the correct object when called', () async {
+  test('Should return the correct instance when called', () async {
     when(() => datasource.call(id:any(named: 'id'))).thenAnswer((invocation) async => [tModel]);
     var result = await sut.call(id:5);
     expect(result.first.name, 'testCity');

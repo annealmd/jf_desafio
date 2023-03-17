@@ -15,14 +15,14 @@ void main() {
     tModel = StateModel(id: 1, nome: 'testState', sigla: 'TS');
   });
 
-  test('Should return a StateEntity when called', () async {
+  test('Should return a List<StateEntity> when called', () async {
     when(() => datasource()).thenAnswer((invocation) async => [tModel]);
     var result = await sut.call();
     verify(() => datasource()).called(1);
     expect(result, isA<List<StateEntity>>());
   });
 
-  test('Should return the correct object when called', () async {
+  test('Should return the correct instance when called', () async {
     when(() => datasource.call()).thenAnswer((invocation) async => [tModel]);
     var result = await sut.call();
     expect(result.first.uf, 'TS');

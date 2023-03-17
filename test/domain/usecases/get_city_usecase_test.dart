@@ -18,7 +18,7 @@ void main() {
     var result = await sut(id: 5);
     expect(result, isA<List<CityEntity>>());
   });
-  test('Should return the correct object', () async {
+  test('Should return the correct instance', () async {
     when(() => repo(id:any(named: 'id'))).thenAnswer((invocation) async => [tCity]);
     var result = await sut(id: 5);
     expect(result.first.name, 'Montes Claros');
