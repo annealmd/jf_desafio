@@ -1,6 +1,6 @@
 class ClientEntity {
-  final State state;
-  final City city;
+  final StateEntity state;
+  final CityEntity city;
 
   ClientEntity({
     required this.state,
@@ -8,16 +8,16 @@ class ClientEntity {
   });
 }
 
-class State {
+class StateEntity {
   final int id;
   final String name;
   final String uf;
 
-  State({required this.id, required this.name, required this.uf});
+  StateEntity({required this.id, required this.name, required this.uf});
 }
 
-class City {
+class CityEntity {
   final String name;
 
-  City({required this.name});
+  CityEntity({required this.name});
 }
