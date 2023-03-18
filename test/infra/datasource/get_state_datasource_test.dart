@@ -15,7 +15,7 @@ void main() {
 
   setUp(() {
     client = MockHttpClient();
-    sut = GetStateDataSource(client: client);
+    sut = GetStateDatasource(client: client);
     response = HttpResponse(body: fixture('states.json'), statusCode: 200);
   });
 

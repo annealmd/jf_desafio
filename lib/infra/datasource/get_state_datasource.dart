@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import '../../data/data.dart';
 
-class GetStateDataSource implements IGetStateDatasource {
+class GetStateDatasource implements IGetStateDatasource {
   final IHttpClient client;
 
-  GetStateDataSource({required this.client});
+  GetStateDatasource({required this.client});
   @override
   Future<List<StateModel>> call() async {
     final response = await client.getState();
