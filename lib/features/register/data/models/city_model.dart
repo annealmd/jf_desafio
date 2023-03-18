@@ -1,4 +1,4 @@
-import 'package:jf_desafio/domain/domain.dart';
+import 'package:jf_desafio/features/register/domain/domain.dart';
 
 class CityModel extends CityEntity {
   CityModel({required nome}) : super(name: nome);

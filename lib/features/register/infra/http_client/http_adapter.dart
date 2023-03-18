@@ -1,4 +1,4 @@
-import 'package:jf_desafio/data/data.dart';
+import 'package:jf_desafio/features/register/data/data.dart';
 import 'package:http/http.dart' as http;
 
 class HttpAdapter implements IHttpClient {

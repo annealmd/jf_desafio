@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:jf_desafio/domain/domain.dart';
+import 'package:jf_desafio/features/register/domain/domain.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockGetStateRepo extends Mock implements IGetStateRepository {}

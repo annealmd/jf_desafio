@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:jf_desafio/data/data.dart';
-import 'package:jf_desafio/infra/infra.dart';
+import 'package:jf_desafio/features/register/data/data.dart';
+import 'package:jf_desafio/features/register/infra/infra.dart';
 
 
 import '../../fixtures/fixture_reader.dart';
