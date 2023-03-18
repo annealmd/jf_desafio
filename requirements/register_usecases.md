@@ -1,4 +1,6 @@
-# Get UF usecase e Get municípios
+# Register Usecases
+ - GetStateUsecase
+ - GetCityUsecases
 
 ## Caso de Sucesso
 

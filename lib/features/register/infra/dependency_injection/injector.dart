@@ -1,3 +1,5 @@
+import 'package:jf_desafio/features/register/presenter/bloc/register_bloc.dart';
+
 import '../../domain/domain.dart';
 
 import '../../data/data.dart';
@@ -16,7 +18,6 @@ class Injects {
         () => GetCityRepository(datasource: di<IGetCityDatasource>()));
     di.register<IGetCityUsecase>(
         () => GetCityUsecase(repo: di<IGetCityRepository>()));
-    //TODO BLOC
 
     //State
     di.register<IGetStateDatasource>(
@@ -25,6 +26,12 @@ class Injects {
         () => GetStateRepository(datasource: di<IGetStateDatasource>()));
     di.register<IGetStateUsecase>(
         () => GetStateUsecase(repo: di<IGetStateRepository>()));
-    //TODO BLOC
+
+    //BLoC
+    di.register(
+      () => RegisterBloc(
+          cityUsecase: di<IGetCityUsecase>(),
+          stateUsecase: di<IGetStateUsecase>()),
+    );
   }
 }

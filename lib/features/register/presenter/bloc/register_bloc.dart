@@ -1,13 +1,23 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+
+import 'package:jf_desafio/features/register/domain/domain.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
-  RegisterBloc() : super(RegisterInitial()) {
-    on<RegisterEvent>((event, emit) {
-      // TODO: implement event handler
+  final IGetCityUsecase cityUsecase;
+  final IGetStateUsecase stateUsecase;
+
+  RegisterBloc({
+    required this.cityUsecase,
+    required this.stateUsecase,
+  }) : super(RegisterInitial()) {
+    on<GetStateEvent>((event, emit) async => emit(
+          GetStateSuccess(states: await stateUsecase.call()),
+        ));
+    on<GetCityEvent>((event, emit) async {
+      emit(GetCitySuccess(await cityUsecase.call(id: event.id)));
     });
   }
 }

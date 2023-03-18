@@ -1,6 +1,9 @@
-Feature: Cliente
-Como cliente quero ter acesso a uma lista de UF.
-Então quero ter acesso a uma lista de municípios.
+Feature: Register
+Como cliente quero ter acesso a uma lista de UF (oficiais).
+Então quero poder selecionar uma UF.
+Dado a UF quero ter acesso a uma lista de municípios(oficiais) da mesma.
+Então quero poder selecionar um município.
+
 
 Cenário: retorno de uma lista de UF
 Dado que o Cliente clicou no campo buscar UF.
