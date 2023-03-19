@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:jf_desafio/features/register/presenter/pages/widgets/city_dropdown.dart';
 import 'package:jf_desafio/features/register/presenter/pages/widgets/state_dropdown.dart';
 
+import 'widgets/register_form.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -21,7 +23,7 @@ class HomePage extends StatelessWidget {
               ? const EdgeInsets.all(40)
               : const EdgeInsets.all(10),
           width: screenSize > 500 ? screenSize * 0.3 : screenSize * 90,
-          child: RegisterForm(),
+          child: const RegisterForm(),
         ),
       ),
     );

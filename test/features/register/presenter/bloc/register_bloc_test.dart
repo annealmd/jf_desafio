@@ -18,19 +18,19 @@ void main() {
   });
   group('GetState test', () {
     test("Let's mock the RegisterBloc's stream!", () {
-    whenListen(
-        bloc,
-        Stream.fromIterable([
-          RegisterInitial(),
-          GetStateSuccess(states: [tState])
-        ]));
-    expectLater(
-        bloc.stream,
-        emitsInOrder(<RegisterState>[
-          RegisterInitial(),
-          GetStateSuccess(states: [tState])
-        ]));
-  });
+      whenListen(
+          bloc,
+          Stream.fromIterable([
+            RegisterLoading(),
+            GetStateSuccess(states: [tState])
+          ]));
+      expectLater(
+          bloc.stream,
+          emitsInOrder(<RegisterState>[
+            RegisterLoading(),
+            GetStateSuccess(states: [tState])
+          ]));
+    });
   });
 
   group('RegisterBloc', () {
@@ -39,52 +39,48 @@ void main() {
       build: () => bloc,
       expect: () => const <RegisterState>[],
     );
-  //    blocTest<RegisterBloc, RegisterState>(
-  //   'emits GetStateSuccess(states: [tState]) when GetStateEvent() is added',
-  //   build: () => bloc,
-  //   act: (bloc) => bloc.add(GetStateEvent()),
-  //   expect: () => <RegisterState>[
-  //     GetStateSuccess(states: [tState])
-  //   ],
-  // );
+    //    blocTest<RegisterBloc, RegisterState>(
+    //   'emits [RegisterLoading(), GetStateSuccess(states: [tState])] when GetStateEvent() is added',
+    //   build: () => bloc,
+    //   act: (bloc) => bloc.add(GetStateEvent()),
+    //   expect: () => <RegisterState>[RegisterLoading(),
+    //     GetStateSuccess(states: [tState])
+    //   ],
+    // );
   });
-
- 
-  
 
   group('GetState test', () {
     test("Let's mock the RegisterBloc's stream!", () {
-    whenListen(
-        bloc,
-        Stream.fromIterable([
-          RegisterInitial(),
-          GetCitySuccess(cities: [tCity])
-        ]));
-    expectLater(
-        bloc.stream,
-        emitsInOrder(<RegisterState>[
-          RegisterInitial(),
-          GetCitySuccess(cities: [tCity])
-        ]));
-  });
+      whenListen(
+          bloc,
+          Stream.fromIterable([
+            RegisterInitial(),
+            GetCitySuccess(cities: [tCity])
+          ]));
+      expectLater(
+          bloc.stream,
+          emitsInOrder(<RegisterState>[
+            RegisterInitial(),
+            GetCitySuccess(cities: [tCity])
+          ]));
+    });
 
-  group('RegisterBloc', () {
-    blocTest<RegisterBloc, RegisterState>(
-      'emits [] when nothing is added',
-      build: () => bloc,
-      expect: () => const <RegisterState>[],
-    );
-  });
+    group('RegisterBloc', () {
+      blocTest<RegisterBloc, RegisterState>(
+        'emits [] when nothing is added',
+        build: () => bloc,
+        expect: () => const <RegisterState>[],
+      );
+    });
 
-  // blocTest<RegisterBloc, RegisterState>(
-  //   'emits GetStateSuccess(states: [tState]) when GetStateEvent() is added',
-  //   build: () => bloc,
-  //   act: (bloc) => bloc.add(GetStateEvent()),
-  //   expect: () => [isA<RegisterState>()],
+    // blocTest<RegisterBloc, RegisterState>(
+    //   'emits GetStateSuccess(states: [tState]) when GetStateEvent() is added',
+    //   build: () => bloc,
+    //   act: (bloc) => bloc.add(GetStateEvent()),
+    //   expect: () => [isA<RegisterState>()],
     // expect: () => <RegisterState>[
     //   GetStateSuccess(states: [tState])
-   // ],
-  // );
+    // ],
+    // );
   });
-  
 }

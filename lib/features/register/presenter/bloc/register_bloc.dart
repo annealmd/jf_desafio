@@ -14,10 +14,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     required this.cityUsecase,
     required this.stateUsecase,
   }) : super(RegisterInitial()) {
-    on<GetStateEvent>((event, emit) async => emit(
-          GetStateSuccess(states: await stateUsecase.call()),
-        ));
+    on<GetStateEvent>((event, emit) async {
+      emit(RegisterLoading());
+      emit(GetStateSuccess(states: await stateUsecase.call()));
+    });
     on<GetCityEvent>((event, emit) async {
+      emit(RegisterLoading());
       emit(GetCitySuccess(cities: await cityUsecase.call(id: event.id)));
     });
   }
