@@ -74,3 +74,10 @@ nome:
 regiao-intermediara:	
  { }
 ]
+
+# Desafios
+Apesar de estar funcionando adequadamente, eu recebi esse erro no Debug Console:
+E/SurfaceSyncer(11402): Failed to find sync for id=0
+W/Parcel  (11402): Expecting binder but got null!
+
+https://stackoverflow.com/questions/73432326/failed-to-find-sync-for-id-0-in-flutter

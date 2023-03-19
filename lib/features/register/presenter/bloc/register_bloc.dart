@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 
 import 'package:jf_desafio/features/register/domain/domain.dart';
 
@@ -17,7 +18,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           GetStateSuccess(states: await stateUsecase.call()),
         ));
     on<GetCityEvent>((event, emit) async {
-      emit(GetCitySuccess(await cityUsecase.call(id: event.id)));
+      emit(GetCitySuccess(cities: await cityUsecase.call(id: event.id)));
     });
   }
 }
