@@ -17,66 +17,64 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
-  var registerBloc = DependencyInjector().get<RegisterBloc>();
-
+  late CityEntity cityClient;
+  late StateEntity stateClient;
   @override
   Widget build(BuildContext context) {
-    registerBloc.add(GetStateEvent());
-    late CityEntity cityClient;
-    late StateEntity stateClient;
-    return BlocBuilder<RegisterBloc, RegisterState>(
-      bloc: registerBloc,
-      buildWhen: (previous, current) => previous != current,
-      builder: (context, state) {
-        if (state is RegisterLoading) {
-          return const CircularProgressIndicator();
-        } else if (state is RegisterError) {
-          return const Text('Erro');
-        } else if (state is GetStateSuccess) {
-          return Form(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  StateDropdown(
-                    stateEntityList: state.states,
-                    onChanged: (String? newValue) {
-                      stateClient =
-                          (state.states.firstWhere((e) => e.name == newValue));
-                      print(stateClient.id);
-                      registerBloc.add(GetCityEvent(id: stateClient.id));
+    context.read<RegisterBloc>().add(GetStateEvent());
 
-                      setState(() {
-                        String _dropdownValue = newValue!;
-                      });
-                    },
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  //Text(stateClient.name),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        BlocBuilder<RegisterBloc, RegisterState>(
+          buildWhen: (previous, current) => previous != current,
+          builder: (context, state) {
+            if (state is RegisterLoading) {
+              return const CircularProgressIndicator();
+            } else if (state is RegisterError) {
+              return const Text('Erro');
+            } else if (state is GetStateSuccess || state is GetCitySuccess) {
+              return Form(
+                child: Column(
+                  children: [
+                    StateDropdown(
+                      stateEntityList: state.statesList,
+                      onChanged: (String? newValue) {
+                        stateClient = (state.statesList
+                            .firstWhere((e) => e.name == newValue));
+                        print(stateClient.id);
 
-                  // if(state is GetCitySuccess){
+                        setState(() {
+                          String dropDownValue = newValue!;
+                          context
+                              .read<RegisterBloc>()
+                              .add(GetCityEvent(id: stateClient.id));
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    CityDropdown(
+                        cityEntityList: state.citiesList,
+                        onChanged: (String? newValue) {
+                          cityClient = (state.citiesList
+                              .firstWhere((e) => e.name == newValue));
+                          print(cityClient.name);
 
-                  //}
-                ]),
-          );
-        } else if (state is GetCitySuccess) {
-          return CityDropdown(
-            cityEntityList: state.cities,
-            onChanged: (String? newValue) {
-              cityClient = (state.cities.firstWhere((e) => e.name == newValue));
-              print(cityClient.name);
-
-              setState(() {
-                String _dropdownValue = newValue!;
-              });
-            },
-          );
-        } else {
-          return const Text(' print');
-        }
-      },
+                          setState(() {
+                            String dropdownValue1 = newValue!;
+                          });
+                        }),
+                  ],
+                ),
+              );
+            } else {
+              print(state.runtimeType);
+              return const Text(' print');
+            }
+          },
+        ),
+      ],
     );
   }
 }

@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/domain.dart';
-import '../../../infra/infra.dart';
-import '../../presenter.dart';
 
 class CityDropdown extends StatelessWidget {
   final List<CityEntity> cityEntityList;
   final void Function(String?)? onChanged;
 
-  const CityDropdown({
+  CityDropdown({
     super.key,
     required this.cityEntityList,
     this.onChanged,
   });
 
+  late final cityList = <String>[
+    ...(cityEntityList.map((e) => e.name).toList())
+  ];
+
   @override
   Widget build(BuildContext context) {
-    var cityList = <String>[...(cityEntityList.map((e) => e.name).toList())];
-
     return DropdownButtonFormField(
       //focusNode: doseFocusNode,
       decoration: InputDecoration(

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:jf_desafio/features/register/presenter/pages/widgets/city_dropdown.dart';
-import 'package:jf_desafio/features/register/presenter/pages/widgets/state_dropdown.dart';
-
+import '../../infra/infra.dart';
+import '../presenter.dart';
 import 'widgets/register_form.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+  final registerBloc = DependencyInjector().get<RegisterBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +23,20 @@ class HomePage extends StatelessWidget {
           padding: screenSize > 500
               ? const EdgeInsets.all(40)
               : const EdgeInsets.all(10),
-          width: screenSize > 500 ? screenSize * 0.3 : screenSize * 90,
-          child: const RegisterForm(),
+          width: screenSize > 500 ? screenSize * 0.4 : screenSize * 90,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text('animation'),
+              BlocProvider(
+                create: (_) => registerBloc,
+                child: const RegisterForm(),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
-

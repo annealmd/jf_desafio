@@ -4,20 +4,22 @@ import '../../../domain/domain.dart';
 class StateDropdown extends StatelessWidget {
   final List<StateEntity> stateEntityList;
   final void Function(String?)? onChanged;
-  const StateDropdown({
+
+  StateDropdown({
     super.key,
     required this.stateEntityList,
     this.onChanged,
   });
+  late final stateList = <String>[
+    ...(stateEntityList.map((e) => e.name).toList())
+  ];
 
   @override
   Widget build(BuildContext context) {
-    var stateList = <String>[...(stateEntityList.map((e) => e.name).toList())];
-
     return DropdownButtonFormField(
       //focusNode: doseFocusNode,
       decoration: InputDecoration(
-        labelText: 'Escolha o Estado:',
+        labelText: 'Escolha o Estado',
         labelStyle: const TextStyle(fontWeight: FontWeight.bold),
         hintText: 'Selecione',
         filled: true,
@@ -28,7 +30,6 @@ class StateDropdown extends StatelessWidget {
       ),
       icon: Icon(Icons.arrow_drop_down, color: Colors.green[700], size: 40),
       onChanged: onChanged,
-
       items: stateList.map<DropdownMenuItem<String>>((e) {
         return DropdownMenuItem(
           value: e,
