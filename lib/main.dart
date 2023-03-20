@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jf_desafio/features/register/infra/dependency_injection/injector.dart';
 
-import 'features/register/presenter/pages/homepage.dart';
+import 'features/core/router/app_router.dart';
 
 void main() {
   Injects.init();
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      onGenerateRoute: AppRouter.onGenerateRoute,
     );
   }
 }

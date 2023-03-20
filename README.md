@@ -40,6 +40,7 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
   A injeção de dependência foi feita de acordo a aula de backend do Deived Willyam com uma pequena adaptação.
 - BLoC
   Como gerência de estado, problemas no test e na chamada de multiplos eventos.
+  https://www.youtube.com/watch?v=0QgJWdbcHOY&ab_channel=WilliamSilva
 
 - Paginas
   Apesar de estar funcionando adequadamente, eu recebi esse erro no Debug Console:

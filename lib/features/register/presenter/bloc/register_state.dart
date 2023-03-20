@@ -1,51 +1,40 @@
 part of 'register_bloc.dart';
 
-abstract class RegisterState extends Equatable {
-  final List<StateEntity> statesList;
-  final List<CityEntity> citiesList;
+abstract class RegisterState<T> extends Equatable {
+  final List<T> entityList;
 
-  const RegisterState(this.statesList, this.citiesList);
-
+  const RegisterState({required this.entityList});
   @override
-  List<Object?> get props => [statesList, citiesList];
+  List<Object?> get props => [];
 }
 
 class RegisterInitial extends RegisterState {
-  RegisterInitial() : super([], []);
+  RegisterInitial() : super(entityList: []);
 
   @override
-  List<Object?> get props => [statesList, citiesList];
+  List<Object?> get props => [];
 }
 
 class RegisterLoading extends RegisterState {
-  RegisterLoading() : super([], []);
+  RegisterLoading() : super(entityList: []);
 
   @override
-  List<Object?> get props => [statesList, citiesList];
+  List<Object?> get props => [];
 }
 
-class GetStateSuccess extends RegisterState {
+class GetStateSuccess extends RegisterState<StateEntity> {
   final List<StateEntity> states;
 
-  GetStateSuccess({required this.states}) : super(states, []);
+  const GetStateSuccess({required this.states}) : super(entityList: states);
 
   @override
-  List<Object?> get props => [statesList, citiesList];
-}
-
-class GetCitySuccess extends RegisterState {
-  final List<CityEntity> cities;
-
-  GetCitySuccess({required this.cities}) : super([], cities);
-
-  @override
-  List<Object?> get props => [statesList, citiesList];
+  List<Object?> get props => [states];
 }
 
 class RegisterError extends RegisterState {
   final String message;
 
-  RegisterError({required this.message}) : super([], []);
+  RegisterError({required this.message}) : super(entityList: []);
   @override
   List<Object?> get props => [message];
 }
