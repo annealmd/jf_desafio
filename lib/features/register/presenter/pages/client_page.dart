@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../domain/domain.dart';
 
-
 class ClientPage extends StatelessWidget {
   final ClientEntity client;
-  ClientPage({super.key, required this.client});
+  const ClientPage({super.key, required this.client});
 
   static const routeName = '/client';
 

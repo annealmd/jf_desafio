@@ -8,13 +8,6 @@ abstract class RegisterState<T> extends Equatable {
   List<Object?> get props => [];
 }
 
-class RegisterInitial extends RegisterState {
-  RegisterInitial() : super(entityList: []);
-
-  @override
-  List<Object?> get props => [];
-}
-
 class RegisterLoading extends RegisterState {
   RegisterLoading() : super(entityList: []);
 

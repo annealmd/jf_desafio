@@ -8,12 +8,6 @@ abstract class GetCityState<T> extends Equatable {
   List<Object?> get props => [];
 }
 
-class GetCityInitial extends GetCityState {
-  GetCityInitial() : super(entityList: []);
-
-  @override
-  List<Object?> get props => [];
-}
 
 class GetCityLoading extends GetCityState {
   GetCityLoading() : super(entityList: []);

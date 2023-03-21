@@ -43,8 +43,11 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 
 ### Referências
   - Usei como referência os meus projetos de estudo, como são mais antigos, identifiquei algumas melhorias neles nessas consultas.
+  https://github.com/annealmd/tdd-medicamento
+  https://github.com/annealmd/animated_counter
 
   - A minha base de estudo é o Reso Coder, Fluttery e mais recente o Deived Willyam (aprendendo dart backend).
+  https://www.youtube.com/watch?v=xV22lglBnig&t=932s&ab_channel=ResoCoder
 ### SOLID
   As classes estão com apenas uma responsabilidade.
   O model foi feito com herança (extends).
