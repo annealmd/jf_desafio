@@ -31,7 +31,6 @@ class Injects {
     //BLoC
     di.register(
       () => RegisterBloc(
-          cityUsecase: di<IGetCityUsecase>(),
           stateUsecase: di<IGetStateUsecase>()),
     );
 

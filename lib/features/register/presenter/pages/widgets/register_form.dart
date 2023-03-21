@@ -34,7 +34,12 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Escolha o seu Estado'),
+        centerTitle: true,
+      ),
       body: StreamBuilder<RegisterState>(
           stream: registerBloc.outputRegister,
           builder: (context, state) {
@@ -44,25 +49,41 @@ class _RegisterFormState extends State<RegisterForm> {
               List<StateEntity> list =
                   (state.data?.entityList) as List<StateEntity>;
 
-              return ListView.separated(
-                  itemBuilder: (_, i) {
-                    return ListTile(
-                      leading: Text(list[i].uf),
-                      title: Text(list[i].name),
-                      onTap: () {
-                        stateClient = StateEntity(
-                          id: list[i].id,
-                          name: list[i].name,
-                          uf: list[i].uf,
+              return Center(
+                child: Container(
+                  color: screenSize > 500
+                      ? const Color.fromARGB(197, 246, 246, 245)
+                      : null,
+                  alignment: Alignment.center,
+                  padding: screenSize > 500
+                      ? const EdgeInsets.all(40)
+                      : const EdgeInsets.all(10),
+                  width: screenSize > 500 ? screenSize * 0.4 : screenSize * 90,
+                  child: ListView.separated(
+                      itemBuilder: (_, i) {
+                        return ListTile(
+                          hoverColor: const Color.fromARGB(255, 235, 235, 128),
+                          tileColor: (i % 2 == 0)
+                              ? const Color.fromARGB(255, 246, 246, 245)
+                              : const Color.fromARGB(197, 213, 225, 242),
+                          leading: Text(list[i].uf),
+                          title: Text(list[i].name),
+                          onTap: () {
+                            stateClient = StateEntity(
+                              id: list[i].id,
+                              name: list[i].name,
+                              uf: list[i].uf,
+                            );
+                            showAlertDialog(
+                                context, stateClient.name, stateClient);
+                          },
                         );
-                        showAlertDialog(
-                            context, stateClient.name, stateClient.id);
                       },
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, _) =>
-                      const Divider(),
-                  itemCount: list.length);
+                      separatorBuilder: (BuildContext context, _) =>
+                          const Divider(),
+                      itemCount: list.length),
+                ),
+              );
             } else {
               return const Text('error');
             }
@@ -70,20 +91,20 @@ class _RegisterFormState extends State<RegisterForm> {
     );
   }
 
-  showAlertDialog(BuildContext context, String estado, int? id) {
+  showAlertDialog(
+      BuildContext context, String estado, StateEntity? clientState) {
     Widget okButton = ElevatedButton(
       onPressed: () {
         Navigator.of(context).pop();
 
-        Navigator.popAndPushNamed(context, CityForm.routeName, arguments: id);
+        Navigator.popAndPushNamed(context, CityForm.routeName,
+            arguments: clientState);
       },
       child: const Text('Correto'),
     );
     Widget cancelButton = ElevatedButton(
       onPressed: () {
         Navigator.of(context).pop();
-
-        //registerBloc.inputRegister.close();
       },
       child: const Text('Cancelar'),
     );
@@ -105,11 +126,4 @@ class _RegisterFormState extends State<RegisterForm> {
       },
     );
   }
-}
-
-class cityParams {
-  final int id;
-  final Stream<RegisterEvent> stream;
-
-  cityParams(this.id, this.stream);
 }

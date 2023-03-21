@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jf_desafio/features/register/domain/domain.dart';
 
-import '../../infra/infra.dart';
-import '../presenter.dart';
 import 'widgets/register_form.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class ClientPage extends StatelessWidget {
+  final ClientEntity client;
+  ClientPage({super.key, required this.client});
+
+  static const routeName = '/client';
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +24,15 @@ class HomePage extends StatelessWidget {
               ? const EdgeInsets.all(40)
               : const EdgeInsets.all(10),
           width: screenSize > 500 ? screenSize * 0.4 : screenSize * 90,
-          child: ElevatedButton(
-            child: const Text('press the button'),
-            onPressed: () {
-              //Navigator.popAndPushNamed(context, RegisterForm.routeName);
-            },
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('John Doe'),
+                Text(client.city.name),
+                Text('${client.state.name} - ${client.state.uf}'),
+              ],
+            ),
           ),
         ),
       ),

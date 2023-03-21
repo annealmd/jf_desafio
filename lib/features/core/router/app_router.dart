@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jf_desafio/features/register/domain/domain.dart';
+import 'package:jf_desafio/features/register/presenter/pages/client_page.dart';
+
 import 'package:jf_desafio/features/register/presenter/pages/widgets/city_form.dart';
 
 import '../../register/presenter/pages/widgets/register_form.dart';
@@ -16,23 +19,17 @@ class AppRouter {
           // return MaterialPageRoute(
           //   builder: (_) => const HomePage(),
         );
-      // case RegisterForm.routeName:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const RegisterForm(),
-      //   );
+      case ClientPage.routeName:
+        final client = settings.arguments as ClientEntity;
+        return MaterialPageRoute(
+          builder: (_) => ClientPage(client: client),
+        );
       case CityForm.routeName:
         //final id = int.parse(settings.arguments.toString());
-        final id = settings.arguments as int;
+        final clientState = settings.arguments as StateEntity;
         return MaterialPageRoute(
-          builder: (_) => CityForm(id: id),
+          builder: (_) => CityForm(clientState: clientState),
         );
-
-      // case MedicineEditPage.routeName:
-      //   final EditArguments editArguments = settings.arguments as EditArguments;
-      //   return MaterialPageRoute(
-      //     builder: (_) => MedicineEditPage(
-      //         medicine: editArguments.medicine, index: editArguments.index),
-      //   );
 
       default:
         throw Exception('Route not found!');

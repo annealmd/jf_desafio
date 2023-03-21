@@ -31,7 +31,7 @@ class GetCitySuccess extends GetCityState<CityEntity> {
   List<Object?> get props => [cities];
 }
 
-class GetCityError extends GetCityState{
+class GetCityError extends GetCityState {
   final String message;
 
   GetCityError({required this.message}) : super(entityList: []);
