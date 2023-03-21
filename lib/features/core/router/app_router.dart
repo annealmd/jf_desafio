@@ -13,10 +13,13 @@ class AppRouter {
     switch (settings.name) {
       case home:
         return MaterialPageRoute(
-          builder: (_) => const RegisterForm(),
-          // return MaterialPageRoute(
-          //   builder: (_) => const HomePage(),
+          builder: (_) => const Splashpage(),
         );
+        case RegisterForm.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const RegisterForm(),
+        );
+
       case ClientPage.routeName:
         final client = settings.arguments as ClientEntity;
         return MaterialPageRoute(

@@ -8,6 +8,8 @@ class RegisterForm extends StatefulWidget {
     super.key,
   });
 
+  static const routeName = '/register';
+
   @override
   State<RegisterForm> createState() => _RegisterFormState();
 }
@@ -41,7 +43,7 @@ class _RegisterFormState extends State<RegisterForm> {
           stream: registerBloc.outputRegister,
           builder: (context, state) {
             if (state.data is RegisterLoading) {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             } else if (state.data is GetStateSuccess) {
               List<StateEntity> list =
                   (state.data?.entityList) as List<StateEntity>;

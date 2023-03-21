@@ -40,7 +40,7 @@ class _CityFormState extends State<CityForm> {
           stream: cityBloc.outputRegister,
           builder: (context, state) {
             if (state.data is GetCityLoading) {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             } else if (state.data is GetCitySuccess) {
               List<CityEntity> list =
                   (state.data?.entityList) as List<CityEntity>;
