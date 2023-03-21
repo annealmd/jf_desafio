@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jf_desafio/features/register/domain/domain.dart';
 
-import 'widgets/register_form.dart';
+import '../../domain/domain.dart';
+
 
 class ClientPage extends StatelessWidget {
   final ClientEntity client;

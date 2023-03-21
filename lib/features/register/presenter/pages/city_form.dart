@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jf_desafio/features/register/presenter/pages/client_page.dart';
-import '../../../domain/domain.dart';
-import '../../../infra/infra.dart';
-import '../../bloc/get_city_bloc.dart';
+import '../../domain/domain.dart';
+import '../../infra/infra.dart';
+import '../presenter.dart';
 
 class CityForm extends StatefulWidget {
   static const routeName = '/city';

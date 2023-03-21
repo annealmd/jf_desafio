@@ -1,10 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:jf_desafio/features/register/domain/domain.dart';
-import 'package:jf_desafio/features/register/presenter/pages/widgets/city_form.dart';
-import '../../../infra/infra.dart';
-import '../../presenter.dart';
+import '../../domain/domain.dart';
+import '../../infra/infra.dart';
+import '../presenter.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({

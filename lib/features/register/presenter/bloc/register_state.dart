@@ -31,15 +31,6 @@ class GetStateSuccess extends RegisterState<StateEntity> {
   List<Object?> get props => [states];
 }
 
-class GetCitySuccess extends RegisterState<CityEntity> {
-  final List<CityEntity> cities;
-
-  const GetCitySuccess({required this.cities}) : super(entityList: cities);
-
-  @override
-  List<Object?> get props => [cities];
-}
-
 class RegisterError extends RegisterState {
   final String message;
 

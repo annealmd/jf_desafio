@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jf_desafio/features/register/domain/domain.dart';
-import 'package:jf_desafio/features/register/presenter/pages/client_page.dart';
 
-import 'package:jf_desafio/features/register/presenter/pages/widgets/city_form.dart';
+import '../../register/domain/domain.dart';
+import '../../register/presenter/presenter.dart';
 
-import '../../register/presenter/pages/widgets/register_form.dart';
 
 class AppRouter {
   static const String home = '/';

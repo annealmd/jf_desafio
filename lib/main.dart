@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jf_desafio/features/register/infra/dependency_injection/injector.dart';
 
 import 'features/core/router/app_router.dart';
+import 'features/register/infra/infra.dart';
 
 void main() {
   Injects.init();
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,

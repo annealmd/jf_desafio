@@ -3,7 +3,7 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 
-import 'package:jf_desafio/features/register/domain/domain.dart';
+import '../../domain/domain.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';
@@ -15,8 +15,7 @@ class RegisterBloc {
   final _outputRegisterController = StreamController<RegisterState>();
 
   Sink<RegisterEvent> get inputRegister => _inputRegisterController.sink;
-  Stream<RegisterState> get outputRegister =>
-      _outputRegisterController.stream;
+  Stream<RegisterState> get outputRegister => _outputRegisterController.stream;
 
   RegisterBloc({required this.stateUsecase}) {
     _inputRegisterController.stream.listen(_mapEventToState);

@@ -26,15 +26,26 @@ GET https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios
 https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orderBy=nome
 [{"id":3300100,"nome":"Angra dos Reis","microrregiao":{"id":33013,"nome":"Baía da Ilha Grande","mesorregiao":{"id":3305,"nome":"Sul Fluminense","UF":{"id":33,"sigla":"RJ","nome":"Rio de Janeiro","regiao":{"id":3,"sigla":"SE","nome":"Sudeste"}}}},"regiao-imediata":{"id":330002,"nome":"Angra dos Reis","regiao-intermediaria":{"id":3301,"nome":"Rio de Janeiro","UF":{"id":33,"sigla":"RJ","nome":"Rio de Janeiro","regiao":{"id":3,"sigla":"SE","nome":"Sudeste"}}}}}]
 
-# Desafios
+## Desafios
 
-- Entender a api e as chamadas.
-  Como as UFs e as cidades trazem informações valiosas para o marketing,
+### Entender a api e as chamadas.
+  - Como as UFs e as cidades trazem informações valiosas para o marketing (fazer ação para clientes em determinadas microregiões),
   resolvi criá-las como classe para que no futuro, se necessário, mais informações possam ser adicionadas facilmente.
-- Arquitetura
-  Como é um projeto pequeno, um MVC seria mais adequado e rápido.
+### Arquitetura
+  - Como é um projeto pequeno, um MVC seria mais adequado e rápido.
   Porém, usando a Clean Arch fica mais fácil de escalar e dar manutenção.
-- SOLID
+### State Management
+  - Como a segunda chamada de api depende do resultado da primeira, tive muita dificuldade com os streams.
+  Usei BLoC (flutter_bloc) mas o dropdown menu as vezes funcionava para os dois campos (estado e cidade) e as vezes funmcionava apenas para o estado.
+  Então resolvi fazer apenas com o dart streams e colocar broadcast, mas tb não obtive.
+  No bloc os States estão genéricos devido a essa tentativa.
+  Por fim, criei 2 blocs (estado e cidade) usando streams.
+
+### Referências
+  - Usei como referência os meus projetos de estudo, como são mais antigos, identifiquei algumas melhorias neles nessas consultas.
+
+  - A minha base de estudo é o Reso Coder, Fluttery e mais recente o Deived Willyam (aprendendo dart backend).
+### SOLID
   As classes estão com apenas uma responsabilidade.
   O model foi feito com herança (extends).
   A injeção de dependência foi feita de acordo a aula de backend do Deived Willyam com uma pequena adaptação.
