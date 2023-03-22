@@ -25,10 +25,14 @@ class RegisterBloc {
     var states = <StateEntity>[];
     _outputRegisterController.add(RegisterLoading());
 
-    if (event is GetStateEvent) {
-      states = await stateUsecase.call();
+    try {
+      if (event is GetStateEvent) {
+        states = await stateUsecase.call();
+      }
+      _outputRegisterController.add(GetStateSuccess(states: states));
+    } on Exception catch (e) {
+      _outputRegisterController
+          .add(RegisterError(message: 'Servidor com problemas $e'));
     }
-
-    _outputRegisterController.add(GetStateSuccess(states: states));
   }
 }

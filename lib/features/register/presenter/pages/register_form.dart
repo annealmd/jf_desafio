@@ -61,6 +61,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   child: ListView.separated(
                       itemBuilder: (_, i) {
                         return ListTile(
+                          splashColor: Colors.green,
                           hoverColor: const Color.fromARGB(255, 235, 235, 128),
                           tileColor: (i % 2 == 0)
                               ? const Color.fromARGB(255, 246, 246, 245)
@@ -73,8 +74,12 @@ class _RegisterFormState extends State<RegisterForm> {
                               name: list[i].name,
                               uf: list[i].uf,
                             );
-                            showAlertDialog(
-                                context, stateClient.name, stateClient);
+                            DialogBox<StateEntity>(
+                                    context: context,
+                                    route: CityForm.routeName,
+                                    name: stateClient.name,
+                                    item: stateClient)
+                                .call(context);
                           },
                         );
                       },
@@ -84,45 +89,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 ),
               );
             } else {
-              return const Text('error');
+              return const Text('Tente mais tarde');
             }
           }),
-    );
-  }
-
-  showAlertDialog(
-      BuildContext context, String estado, StateEntity? clientState) {
-    Widget okButton = ElevatedButton(
-      onPressed: () {
-        Navigator.of(context).pop();
-
-        Navigator.popAndPushNamed(context, CityForm.routeName,
-            arguments: clientState);
-      },
-      child: const Text('Correto'),
-    );
-    Widget cancelButton = ElevatedButton(
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-      child: const Text('Cancelar'),
-    );
-
-    // configura o  AlertDialog
-    AlertDialog alerta = AlertDialog(
-      title: const Text("Confirma"),
-      content: Text(estado),
-      actions: [
-        okButton,
-        cancelButton,
-      ],
-    );
-    // exibe o dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alerta;
-      },
     );
   }
 }

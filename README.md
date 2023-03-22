@@ -11,6 +11,7 @@
 - \$flutter doctor (checar todos os requisitos para rodar flutter).
 - Caso não selecione um emulator, o projeto vai ser rodado web (Chrome).
 - \$flutter run
+- no Chrome o app reinicia com reflesh
 
 ## Desafios
 
@@ -45,6 +46,7 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 
 ### Referências
 
+- Documentação do Flutter https://api.flutter.dev/index.html
 - Usei como referência os meus projetos de estudo, como são mais antigos, identifiquei algumas melhorias neles nessas consultas.
 
 https://github.com/annealmd/tdd-medicamento

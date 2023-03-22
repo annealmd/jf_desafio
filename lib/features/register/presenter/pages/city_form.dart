@@ -30,7 +30,8 @@ class _CityFormState extends State<CityForm> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size.width;
-    late CityEntity cityClient;
+    late CityEntity clientCity;
+    late ClientEntity client;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Escolha a sua Cidade'),
@@ -58,17 +59,25 @@ class _CityFormState extends State<CityForm> {
                   child: ListView.separated(
                       itemBuilder: (_, i) {
                         return ListTile(
+                          splashColor: Colors.green,
                           hoverColor: const Color.fromARGB(255, 235, 235, 128),
                           tileColor: (i % 2 == 0)
                               ? const Color.fromARGB(255, 246, 246, 245)
                               : const Color.fromARGB(197, 213, 225, 242),
                           title: Text(list[i].name),
                           onTap: () {
-                            cityClient = CityEntity(
+                            clientCity = CityEntity(
                               name: list[i].name,
                             );
-                            showAlertDialog(
-                                context, cityClient, widget.clientState);
+
+                            client = ClientEntity(
+                                state: widget.clientState, city: clientCity);
+                            DialogBox<ClientEntity>(
+                                    context: context,
+                                    route: ClientPage.routeName,
+                                    name: clientCity.name,
+                                    item: client)
+                                .call(context);
                           },
                         );
                       },
@@ -84,41 +93,4 @@ class _CityFormState extends State<CityForm> {
     );
   }
 
-  showAlertDialog(
-      BuildContext context, CityEntity cityClient, StateEntity stateClient) {
-    Widget okButton = ElevatedButton(
-      onPressed: () {
-        Navigator.of(context).pop();
-        Navigator.popAndPushNamed(
-          context,
-          ClientPage.routeName,
-          arguments: ClientEntity(city: cityClient, state: stateClient),
-        );
-      },
-      child: const Text('Correto'),
-    );
-    Widget cancelButton = ElevatedButton(
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-      child: const Text('Cancelar'),
-    );
-
-    // configura o  AlertDialog
-    AlertDialog alerta = AlertDialog(
-      title: const Text("Confirma"),
-      content: Text('${cityClient.name} - ${stateClient.uf}'),
-      actions: [
-        okButton,
-        cancelButton,
-      ],
-    );
-    // exibe o dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alerta;
-      },
-    );
-  }
 }
