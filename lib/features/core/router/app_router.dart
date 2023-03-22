@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../register/domain/domain.dart';
 import '../../register/presenter/presenter.dart';
 
-
 class AppRouter {
   static const String home = '/';
 
@@ -15,9 +14,9 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const Splashpage(),
         );
-        case RegisterForm.routeName:
+      case StatePage.routeName:
         return MaterialPageRoute(
-          builder: (_) => const RegisterForm(),
+          builder: (_) => const StatePage(),
         );
 
       case ClientPage.routeName:
@@ -25,11 +24,11 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => ClientPage(client: client),
         );
-      case CityForm.routeName:
+      case CityPage.routeName:
         //final id = int.parse(settings.arguments.toString());
         final clientState = settings.arguments as StateEntity;
         return MaterialPageRoute(
-          builder: (_) => CityForm(clientState: clientState),
+          builder: (_) => CityPage(clientState: clientState),
         );
 
       default:

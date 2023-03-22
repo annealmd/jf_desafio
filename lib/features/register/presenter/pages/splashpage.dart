@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jf_desafio/features/register/presenter/pages/register_form.dart';
+import 'package:jf_desafio/features/register/presenter/pages/state_page.dart';
 import 'package:rive/rive.dart';
 
 class Splashpage extends StatefulWidget {
@@ -13,7 +13,7 @@ class _SplashpageState extends State<Splashpage> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 4),
-        () => Navigator.popAndPushNamed(context, RegisterForm.routeName));
+        () => Navigator.popAndPushNamed(context, StatePage.routeName));
     super.initState();
   }
 

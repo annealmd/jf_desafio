@@ -3,48 +3,50 @@ import '../../domain/domain.dart';
 import '../../infra/infra.dart';
 import '../presenter.dart';
 
-class CityForm extends StatefulWidget {
-  static const routeName = '/city';
-  final StateEntity clientState;
+class StatePage extends StatefulWidget {
+  const StatePage({
+    super.key,
+  });
 
-  const CityForm({super.key, required this.clientState});
+  static const routeName = '/register';
 
   @override
-  State<CityForm> createState() => _CityFormState();
+  State<StatePage> createState() => _StatePageState();
 }
 
-class _CityFormState extends State<CityForm> {
-  final cityBloc = DependencyInjector().get<GetCityBloc>();
+class _StatePageState extends State<StatePage> {
+  final registerBloc = DependencyInjector().get<RegisterBloc>();
+
   @override
   void initState() {
-    cityBloc.inputRegister.add(GetCities(id: widget.clientState.id));
+    registerBloc.inputRegister.add(GetStateEvent());
     super.initState();
   }
 
   @override
   void dispose() {
-    cityBloc.inputRegister.close();
+    registerBloc.inputRegister.close();
     super.dispose();
   }
+
+  late StateEntity stateClient;
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size.width;
-    late CityEntity clientCity;
-    late ClientEntity client;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Escolha a sua Cidade'),
+        title: const Text('Escolha o seu Estado'),
         centerTitle: true,
       ),
-      body: StreamBuilder<GetCityState>(
-          stream: cityBloc.outputRegister,
-          builder: (context, AsyncSnapshot snapshot) {
-            if (snapshot.data is GetCityLoading) {
+      body: StreamBuilder<RegisterState>(
+          stream: registerBloc.outputRegister,
+          builder: (context, state) {
+            if (state.data is RegisterLoading) {
               return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.data is GetCitySuccess) {
-              List<CityEntity> list =
-                  (snapshot.data?.entityList) as List<CityEntity>;
+            } else if (state.data is GetStateSuccess) {
+              List<StateEntity> list =
+                  (state.data?.entityList) as List<StateEntity>;
 
               return Center(
                 child: Container(
@@ -55,7 +57,7 @@ class _CityFormState extends State<CityForm> {
                   padding: screenSize > 500
                       ? const EdgeInsets.all(40)
                       : const EdgeInsets.all(10),
-                  width: screenSize > 500 ? screenSize * 0.4 : screenSize * 90,
+                  width: screenSize > 500 ? screenSize * 0.4 : screenSize * 0.9,
                   child: ListView.separated(
                       itemBuilder: (_, i) {
                         return ListTile(
@@ -64,19 +66,19 @@ class _CityFormState extends State<CityForm> {
                           tileColor: (i % 2 == 0)
                               ? const Color.fromARGB(255, 246, 246, 245)
                               : const Color.fromARGB(197, 213, 225, 242),
+                          leading: Text(list[i].uf),
                           title: Text(list[i].name),
                           onTap: () {
-                            clientCity = CityEntity(
+                            stateClient = StateEntity(
+                              id: list[i].id,
                               name: list[i].name,
+                              uf: list[i].uf,
                             );
-
-                            client = ClientEntity(
-                                state: widget.clientState, city: clientCity);
-                            DialogBox<ClientEntity>(
+                            DialogBox<StateEntity>(
                                     context: context,
-                                    route: ClientPage.routeName,
-                                    name: clientCity.name,
-                                    item: client)
+                                    route: CityPage.routeName,
+                                    name: stateClient.name,
+                                    item: stateClient)
                                 .call(context);
                           },
                         );
@@ -87,7 +89,7 @@ class _CityFormState extends State<CityForm> {
                 ),
               );
             } else {
-              return const Text('error');
+              return const Text('Tente mais tarde');
             }
           }),
     );
