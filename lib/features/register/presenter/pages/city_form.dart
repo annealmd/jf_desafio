@@ -39,12 +39,12 @@ class _CityFormState extends State<CityForm> {
       ),
       body: StreamBuilder<GetCityState>(
           stream: cityBloc.outputRegister,
-          builder: (context, state) {
-            if (state.data is GetCityLoading) {
+          builder: (context, AsyncSnapshot snapshot) {
+            if (snapshot.data is GetCityLoading) {
               return const Center(child: CircularProgressIndicator());
-            } else if (state.data is GetCitySuccess) {
+            } else if (snapshot.data is GetCitySuccess) {
               List<CityEntity> list =
-                  (state.data?.entityList) as List<CityEntity>;
+                  (snapshot.data?.entityList) as List<CityEntity>;
 
               return Center(
                 child: Container(
@@ -92,5 +92,4 @@ class _CityFormState extends State<CityForm> {
           }),
     );
   }
-
 }

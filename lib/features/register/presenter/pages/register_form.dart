@@ -57,7 +57,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   padding: screenSize > 500
                       ? const EdgeInsets.all(40)
                       : const EdgeInsets.all(10),
-                  width: screenSize > 500 ? screenSize * 0.4 : screenSize * 90,
+                  width: screenSize > 500 ? screenSize * 0.4 : screenSize * 0.9,
                   child: ListView.separated(
                       itemBuilder: (_, i) {
                         return ListTile(

@@ -48,7 +48,11 @@ class _ClientPageState extends State<ClientPage> {
               '${widget.client.state.name} - ${widget.client.state.uf}',
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-           
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.popAndPushNamed(context, '/');
+                },
+                child: const Text('Reiniciar')),
           ],
         ),
       ),

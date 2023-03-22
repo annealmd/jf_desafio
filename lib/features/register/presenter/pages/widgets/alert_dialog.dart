@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../presenter.dart';
 
 class DialogBox<T> {
   final BuildContext context;
@@ -7,7 +6,11 @@ class DialogBox<T> {
   final String name;
   final T item;
 
-  DialogBox({required this.context, required this.route, required this.name, required this.item});
+  DialogBox(
+      {required this.context,
+      required this.route,
+      required this.name,
+      required this.item});
 
   Future<String?> call(BuildContext context) {
     return showDialog<String>(
@@ -17,16 +20,15 @@ class DialogBox<T> {
         content: Text(name),
         actions: <Widget>[
           TextButton(
+            onPressed: () {
+              Navigator.popAndPushNamed(context, route, arguments: item);
+            },
+            child: const Text('Confirmar'),
+          ),
+          TextButton(
             onPressed: () => Navigator.pop(context),
             child: const Text('Cancelar'),
           ),
-          TextButton(
-            onPressed: () {
-              Navigator.popAndPushNamed(context, route,
-                  arguments: item);
-            },
-            child: const Text('Confirmar'),
-          )
         ],
       ),
     );

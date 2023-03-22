@@ -19,20 +19,22 @@ class _SplashpageState extends State<Splashpage> {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Center(
         child: Container(
           alignment: Alignment.center,
           child: Stack(
             alignment: Alignment.center,
-            children: const [
+            children: [
               SizedBox(
-                child: RiveAnimation.asset(
+                width: screenSize > 500 ? screenSize * 0.4 : screenSize,
+                child: const RiveAnimation.asset(
                   'assets/flares/back.riv',
                   fit: BoxFit.fill,
                 ),
               ),
-              Text(
+              const Text(
                 'JF',
                 style: TextStyle(
                   fontSize: 50,

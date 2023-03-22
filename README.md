@@ -12,6 +12,7 @@
 - Caso não selecione um emulator, o projeto vai ser rodado web (Chrome).
 - \$flutter run
 - no Chrome o app reinicia com reflesh
+- no emulador reinicia clicando na seta (terceiro icon) da barra lateral até ir para a tela inicial do aparelho, arraste.
 
 ## Desafios
 
@@ -42,7 +43,8 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 
   ### Apresentação
 
-  - - No animated counter tem uma animação usando flare, river antigo. No atual eu precisarei de um tempo para aprender como usar, sendo assim não sonsegui colocar um fundo claro no canva e o Splashscreen ficou escuro. O problema é que dá um shock na transição para as páginas claras. Não mudei todos para escuro porque no final eu uso um rive que tem canva clara.
+  - No animated counter tem uma animação usando flare, river antigo. No atual eu precisarei de um tempo para aprender como usar, sendo assim não sonsegui colocar um fundo claro no canva e o Splashscreen ficou escuro. O problema é que dá um shock na transição para as páginas claras. Não mudei todos para escuro porque no final eu uso um rive que tem canva clara.
+  - icon launcher modifiquei apenas o do Android, não alterei o ios e nem web.
 
 ### Referências
 
@@ -57,6 +59,9 @@ https://github.com/annealmd/animated_counter
 https://www.youtube.com/watch?v=xV22lglBnig&t=932s&ab_channel=ResoCoder
 https://www.youtube.com/@Flutterly
 https://www.youtube.com/@FlutterCursos
+
+- Icon_launcher
+  https://twitter.com/romannurik/status/1453737974491860999?s=20
 
 ### SOLID
 
