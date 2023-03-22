@@ -29,8 +29,6 @@ class _StatePageState extends State<StatePage> {
     super.dispose();
   }
 
-  late StateEntity stateClient;
-
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size.width;
@@ -41,12 +39,12 @@ class _StatePageState extends State<StatePage> {
       ),
       body: StreamBuilder<RegisterState>(
           stream: registerBloc.outputRegister,
-          builder: (context, state) {
-            if (state.data is RegisterLoading) {
+          builder: (context, AsyncSnapshot snapshot) {
+            if (snapshot.data is RegisterLoading) {
               return const Center(child: CircularProgressIndicator());
-            } else if (state.data is GetStateSuccess) {
+            } else if (snapshot.data is GetStateSuccess) {
               List<StateEntity> list =
-                  (state.data?.entityList) as List<StateEntity>;
+                  (snapshot.data?.entityList) as List<StateEntity>;
 
               return Center(
                 child: Container(
@@ -60,28 +58,7 @@ class _StatePageState extends State<StatePage> {
                   width: screenSize > 500 ? screenSize * 0.4 : screenSize * 0.9,
                   child: ListView.separated(
                       itemBuilder: (_, i) {
-                        return ListTile(
-                          splashColor: Colors.green,
-                          hoverColor: const Color.fromARGB(255, 235, 235, 128),
-                          tileColor: (i % 2 == 0)
-                              ? const Color.fromARGB(255, 246, 246, 245)
-                              : const Color.fromARGB(197, 213, 225, 242),
-                          leading: Text(list[i].uf),
-                          title: Text(list[i].name),
-                          onTap: () {
-                            stateClient = StateEntity(
-                              id: list[i].id,
-                              name: list[i].name,
-                              uf: list[i].uf,
-                            );
-                            DialogBox<StateEntity>(
-                                    context: context,
-                                    route: CityPage.routeName,
-                                    name: stateClient.name,
-                                    item: stateClient)
-                                .call(context);
-                          },
-                        );
+                        return StateListTile(list: list, i);
                       },
                       separatorBuilder: (BuildContext context, _) =>
                           const Divider(),
@@ -95,3 +72,5 @@ class _StatePageState extends State<StatePage> {
     );
   }
 }
+
+// ignore: must_be_immutable

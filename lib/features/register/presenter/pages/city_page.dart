@@ -30,8 +30,8 @@ class _CityPageState extends State<CityPage> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size.width;
-    late CityEntity clientCity;
-    late ClientEntity client;
+    //late CityEntity clientCity;
+    //late ClientEntity client;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Escolha a sua Cidade'),
@@ -58,28 +58,7 @@ class _CityPageState extends State<CityPage> {
                   width: screenSize > 500 ? screenSize * 0.4 : screenSize * 90,
                   child: ListView.separated(
                       itemBuilder: (_, i) {
-                        return ListTile(
-                          splashColor: Colors.green,
-                          hoverColor: const Color.fromARGB(255, 235, 235, 128),
-                          tileColor: (i % 2 == 0)
-                              ? const Color.fromARGB(255, 246, 246, 245)
-                              : const Color.fromARGB(197, 213, 225, 242),
-                          title: Text(list[i].name),
-                          onTap: () {
-                            clientCity = CityEntity(
-                              name: list[i].name,
-                            );
-
-                            client = ClientEntity(
-                                state: widget.clientState, city: clientCity);
-                            DialogBox<ClientEntity>(
-                                    context: context,
-                                    route: ClientPage.routeName,
-                                    name: clientCity.name,
-                                    item: client)
-                                .call(context);
-                          },
-                        );
+                        return CityListTile(i, list: list, widget: widget);
                       },
                       separatorBuilder: (BuildContext context, _) =>
                           const Divider(),
