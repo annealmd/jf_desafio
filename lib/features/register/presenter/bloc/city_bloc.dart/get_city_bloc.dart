@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 
-import '../../domain/domain.dart';
+import '../../../domain/domain.dart';
+
 
 part 'get_city_event.dart';
 part 'get_city_state.dart';

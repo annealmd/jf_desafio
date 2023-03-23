@@ -30,8 +30,7 @@ class _CityPageState extends State<CityPage> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size.width;
-    //late CityEntity clientCity;
-    //late ClientEntity client;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Escolha a sua Cidade'),
@@ -39,12 +38,12 @@ class _CityPageState extends State<CityPage> {
       ),
       body: StreamBuilder<GetCityState>(
           stream: cityBloc.outputRegister,
-          builder: (context, AsyncSnapshot snapshot) {
+          builder: (context, snapshot) {
             if (snapshot.data is GetCityLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.data is GetCitySuccess) {
               List<CityEntity> list =
-                  (snapshot.data?.entityList) as List<CityEntity>;
+                  snapshot.data?.entityList ?? [];
 
               return Center(
                 child: Container(

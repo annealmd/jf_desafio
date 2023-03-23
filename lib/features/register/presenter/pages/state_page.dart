@@ -8,24 +8,24 @@ class StatePage extends StatefulWidget {
     super.key,
   });
 
-  static const routeName = '/register';
+  static const routeName = '/GetState';
 
   @override
   State<StatePage> createState() => _StatePageState();
 }
 
 class _StatePageState extends State<StatePage> {
-  final registerBloc = DependencyInjector().get<RegisterBloc>();
+  final stateBloc = DependencyInjector().get<GetStateBloc>();
 
   @override
   void initState() {
-    registerBloc.inputRegister.add(GetStateEvent());
+    stateBloc.inputGetState.add(GetStates());
     super.initState();
   }
 
   @override
   void dispose() {
-    registerBloc.inputRegister.close();
+    stateBloc.inputGetState.close();
     super.dispose();
   }
 
@@ -37,14 +37,13 @@ class _StatePageState extends State<StatePage> {
         title: const Text('Escolha o seu Estado'),
         centerTitle: true,
       ),
-      body: StreamBuilder<RegisterState>(
-          stream: registerBloc.outputRegister,
-          builder: (context, AsyncSnapshot snapshot) {
-            if (snapshot.data is RegisterLoading) {
+      body: StreamBuilder<GetStateState>(
+          stream: stateBloc.outputGetState,
+          builder: (context, snapshot) {
+            if (snapshot.data is GetStateLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.data is GetStateSuccess) {
-              List<StateEntity> list =
-                  (snapshot.data?.entityList) as List<StateEntity>;
+              List<StateEntity> list = snapshot.data?.entityList ?? [];
 
               return Center(
                 child: Container(
@@ -72,5 +71,3 @@ class _StatePageState extends State<StatePage> {
     );
   }
 }
-
-// ignore: must_be_immutable

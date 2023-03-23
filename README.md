@@ -12,7 +12,8 @@
 - Caso não selecione um emulator, o projeto vai ser rodado web (Chrome).
 - \$flutter run
 - no Chrome o app reinicia com reflesh
-- no emulador reinicia clicando na seta (terceiro icon) da barra lateral até ir para a tela inicial do aparelho, arraste.
+- no emulador ou celular reiniciar o app.
+- para rodar no celular precisa estar no modo dev ativado e ligado ao computador por usb.
 
 ## Desafios
 

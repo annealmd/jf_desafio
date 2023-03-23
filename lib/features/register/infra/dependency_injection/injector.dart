@@ -1,9 +1,6 @@
-import 'package:jf_desafio/features/register/presenter/bloc/get_city_bloc.dart';
-import 'package:jf_desafio/features/register/presenter/bloc/register_bloc.dart';
-
 import '../../domain/domain.dart';
-
 import '../../data/data.dart';
+import '../../presenter/presenter.dart';
 import '../infra.dart';
 
 class Injects {
@@ -30,8 +27,7 @@ class Injects {
 
     //BLoC
     di.register(
-      () => RegisterBloc(
-          stateUsecase: di<IGetStateUsecase>()),
+      () => GetStateBloc(stateUsecase: di<IGetStateUsecase>()),
     );
 
     di.register(() => GetCityBloc(di<IGetCityUsecase>()));

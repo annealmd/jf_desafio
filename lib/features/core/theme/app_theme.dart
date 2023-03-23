@@ -17,10 +17,7 @@ class AppTheme {
       ),
     ),
     listTileTheme: const ListTileThemeData(
-      tileColor: (4 % 2 == 0)
-          ?  Color.fromARGB(255, 246, 246, 245)
-          :  Color.fromARGB(197, 213, 225, 242),
-    ),
+        selectedTileColor: Color.fromARGB(255, 217, 217, 217)),
   );
 
   static ThemeData darkTheme = ThemeData(
