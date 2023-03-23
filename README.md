@@ -72,7 +72,7 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 1.  A princípio, usei BLoC (flutter_bloc) mas o dropdown menu as vezes funcionava para os dois campos (estado e cidade) e as vezes funcionava apenas para o campo estado.
 
 - Nessa tentativa, criei o estado de sucesso genérico <T> para poder voltar lista de duas entidades diferentes (city e state).
-- Acredito que o erro foi ter esquecido de ter usado o ( if GetStateEvent if else GetCityEvent ).
+- Acredito que o erro foi ter esquecido de usar uma estrutura condicional ( if GetStateEvent if else GetCityEvent ).
 
 2. Então resolvi fazer apenas com o dart streams e colocar broadcast, mas tb não obtive sucesso.
    Por fim, criei 2 blocs (estado e cidade) usando streams puro e não a biblioteca pronta.
@@ -85,18 +85,18 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 
 #### SOLID
 
-**S** As classes estão com apenas uma responsabilidade.
-**O** O model (data/model) foi feito com herança (extends).
-**L** substituição ok
-**I** Interfaces foram implementadas.
-**D** O projeto está dependendo de abstrações e não classes concretas.
+- **S** As classes estão com apenas uma responsabilidade.
+- **O** O model (data/model) foi feito com herança (extends).
+- **L** substituição ok
+- **I** Interfaces foram implementadas.
+- **D** O projeto está dependendo de abstrações e não classes concretas.
 
 ### Apresentação
 
 - No animated counter (projeto pessoal) tem uma animação usando flare, rive antigo. No atual eu precisarei de um tempo para aprender como usar, sendo assim não consegui colocar um fundo claro no canva e o Splashscreen ficou escuro. O problema é que dá um shock na transição para as páginas claras. Não mudei todos para escuro porque no final eu uso um rive que tem canva clara.
 - icon launcher modifiquei apenas o do Android, não alterei o ios e nem web.
 
-### melhorias
+### Melhorias
 
 - Apesar das layers terem sido testadas, seria interessante colocar tratamentos de errors específicos.
 - Nesse caso eu evitaria usar packages com either (fpdart e dartz) e tentaria fazer hardcore.
@@ -109,6 +109,7 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 - Usei como referência os meus projetos de estudo, como são mais antigos, identifiquei algumas melhorias neles nessas consultas.
 
 https://github.com/annealmd/tdd-medicamento
+
 https://github.com/annealmd/animated_counter
 
 - A minha base de estudo é o Reso Coder, Fluttery e mais recente o Deivid Willyan (aprendendo dart backend).
