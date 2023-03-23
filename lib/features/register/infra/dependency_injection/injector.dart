@@ -31,5 +31,6 @@ class Injects {
     );
 
     di.register(() => GetCityBloc(di<IGetCityUsecase>()));
+    
   }
 }

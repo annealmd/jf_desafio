@@ -16,7 +16,7 @@ class GetCityBloc {
 
   Sink<GetCityEvent> get inputRegister => _inputCityController.sink;
   Stream<GetCityState> get outputRegister =>
-      _outputCityController.stream.asBroadcastStream();
+      _outputCityController.stream;
 
   GetCityBloc(this.cityUsecase) {
     _inputCityController.stream.listen(_mapEventToState);

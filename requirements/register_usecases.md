@@ -1,6 +1,7 @@
 # Register Usecases
- - GetStateUsecase
- - GetCityUsecase
+
+- GetStateUsecase
+- GetCityUsecase
 
 ## Caso de Sucesso
 
@@ -8,6 +9,6 @@
 2. Sistema processa os dados recebidos.
 3. Sistema entrega os dados para o usuário.
 
-## Caso de Erro 
+## Caso de Erro
 
 1. retorna mensagem de erro.

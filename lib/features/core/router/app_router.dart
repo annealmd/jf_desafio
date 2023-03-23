@@ -25,7 +25,6 @@ class AppRouter {
           builder: (_) => ClientPage(client: client),
         );
       case CityPage.routeName:
-        //final id = int.parse(settings.arguments.toString());
         final clientState = settings.arguments as StateEntity;
         return MaterialPageRoute(
           builder: (_) => CityPage(clientState: clientState),

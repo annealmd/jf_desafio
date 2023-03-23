@@ -43,7 +43,7 @@ class _CityPageState extends State<CityPage> {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.data is GetCitySuccess) {
               List<CityEntity> list =
-                  snapshot.data?.entityList ?? [];
+                  (snapshot.data?.entityList as List<CityEntity>);
 
               return Center(
                 child: Container(
