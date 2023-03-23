@@ -34,4 +34,4 @@ Cenário: erro.
 Dado não acesso a internet ou problema no servidor.
 Quando o Usuário inicializar o sistema.
 Então o sistema deve retornar uma mensagem de erro
-E sugerir checar conexão ou tentar mais tarde.
+E sugerir verificara conexão ou tentar mais tarde.

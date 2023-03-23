@@ -65,7 +65,9 @@ class _CityPageState extends State<CityPage> {
                 ),
               );
             } else {
-              return const Text('error');
+              return const Center(
+                child: Text('Verifique a sua internet'),
+              );
             }
           }),
     );

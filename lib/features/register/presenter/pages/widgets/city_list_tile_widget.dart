@@ -20,8 +20,6 @@ class CityListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      splashColor: Colors.green,
-      hoverColor: const Color.fromARGB(255, 235, 235, 128),
       tileColor: (i % 2 == 0)
           ? const Color.fromARGB(255, 246, 246, 245)
           : const Color.fromARGB(197, 213, 225, 242),

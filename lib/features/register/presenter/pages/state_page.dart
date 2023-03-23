@@ -67,7 +67,9 @@ class _StatePageState extends State<StatePage> {
                 ),
               );
             } else {
-              return const Text('Tente mais tarde');
+              return const Center(
+                child: Text('Verifique a sua internet'),
+              );
             }
           }),
     );

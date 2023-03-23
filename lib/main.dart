@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jf_desafio/features/core/theme/app_theme.dart';
 
 import 'features/core/router/app_router.dart';
 import 'features/register/infra/infra.dart';
@@ -17,9 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       onGenerateRoute: AppRouter.onGenerateRoute,
     );
   }

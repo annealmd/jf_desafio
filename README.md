@@ -109,7 +109,6 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 - Usei como referência os meus projetos de estudo, como são mais antigos, identifiquei algumas melhorias neles nessas consultas.
 
 https://github.com/annealmd/tdd-medicamento
-
 https://github.com/annealmd/animated_counter
 
 - A minha base de estudo é o Reso Coder, Fluttery e mais recente o Deivid Willyan (aprendendo dart backend).
@@ -117,12 +116,9 @@ https://github.com/annealmd/animated_counter
 https://www.youtube.com/watch?v=xV22lglBnig&t=932s&ab_channel=ResoCoder
 https://www.youtube.com/@Flutterly
 https://www.youtube.com/@FlutterCursos
+https://www.youtube.com/watch?v=0QgJWdbcHOY&ab_channel=WilliamSilva
 
 - Icon_launcher
   https://twitter.com/romannurik/status/1453737974491860999?s=20
 
-* BLoC
-  Como gerência de estado, problemas no test e na chamada de multiplos eventos.
-  https://www.youtube.com/watch?v=0QgJWdbcHOY&ab_channel=WilliamSilva
-
-  ![](jf_gif.gif)
+![](jf_gif.gif)
