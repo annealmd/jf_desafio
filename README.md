@@ -124,3 +124,5 @@ https://www.youtube.com/@FlutterCursos
 * BLoC
   Como gerência de estado, problemas no test e na chamada de multiplos eventos.
   https://www.youtube.com/watch?v=0QgJWdbcHOY&ab_channel=WilliamSilva
+
+  ![](jf_gif.gif)

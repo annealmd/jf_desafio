@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/domain.dart';
+
 class DialogBox<T> {
   final BuildContext context;
   final String route;
@@ -16,7 +18,8 @@ class DialogBox<T> {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text('Estado'),
+        title:
+            item is StateEntity ? const Text('Estado') : const Text('Cidade'),
         content: Text(name),
         actions: <Widget>[
           TextButton(
