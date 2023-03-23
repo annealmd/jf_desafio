@@ -62,7 +62,7 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 ### Arquitetura
 
 - Como é um projeto pequeno, um MVC seria mais adequado e rápido.
-  Porém, usando a Clean Arch fica mais fácil de escalar e dar manutenção.
+  Porém, usando a Clean Arch fica mais fácil de escalar e dar manutenção, apesar da granulação maior.
 - Foram criadas 3 entidades (client, city, state), essa decisão tb teve como base escalabilidade.
 - Injeção de dependência eu fiquei na dúvida de onde colocar, infra ou core, mas decidi pela infra porque acredito que mesmo adicionando outras features a classe será usada apenas para o feature register.
 - Core, rotas e tema que são arquivos relacionados a todo o app, feature presente e futuras.
@@ -76,8 +76,20 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 
 2. Então resolvi fazer apenas com o dart streams e colocar broadcast, mas tb não obtive sucesso.
    Por fim, criei 2 blocs (estado e cidade) usando streams puro e não a biblioteca pronta.
+   Talvez a decisão de usar o provider fosse mais interessante.
 
-3. Nesse ponto a decisão de fazer 2 pages ao invés de 1 com dropdown menu foi tomada devido ao extra paginação do desafio.
+3. Nesse ponto a optei por fazer 2 pages ao invés de 1 com dropdown menu foi tomada devido ao extra paginação do desafio.
+
+4. Tentei colocar check_connectivity para checar o estado da internet, porém apesar de estar no yaml, o package não ficou disponível p o projeto. Poderia procurar a solução do problema mais profundamente, mas acredito que no momento se eu emitir um StateError é o suficiente.
+   https://pub.dev/packages/internet_connection_checker/example
+
+#### SOLID
+
+**S** As classes estão com apenas uma responsabilidade.
+**O** O model (data/model) foi feito com herança (extends).
+**L** substituição ok
+**I** Interfaces foram implementadas.
+**D** O projeto está dependendo de abstrações e não classes concretas.
 
 ### Apresentação
 
@@ -89,6 +101,7 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 - Apesar das layers terem sido testadas, seria interessante colocar tratamentos de errors específicos.
 - Nesse caso eu evitaria usar packages com either (fpdart e dartz) e tentaria fazer hardcore.
 - Aos invés dos 2 blocs, criar apenas 1 RegisterBloc.
+- Colocaria um check_connectivity para primeiramente testar se há acesso a internet.
 
 ### Referências
 
@@ -107,19 +120,6 @@ https://www.youtube.com/@FlutterCursos
 - Icon_launcher
   https://twitter.com/romannurik/status/1453737974491860999?s=20
 
-### SOLID
-
-As classes estão com apenas uma responsabilidade.
-O model foi feito com herança (extends).
-A injeção de dependência foi feita de acordo a aula de backend do Deived Willyam com uma pequena adaptação.
-
-- BLoC
+* BLoC
   Como gerência de estado, problemas no test e na chamada de multiplos eventos.
   https://www.youtube.com/watch?v=0QgJWdbcHOY&ab_channel=WilliamSilva
-
-- Paginas
-  Apesar de estar funcionando adequadamente, eu recebi esse erro no Debug Console:
-  E/SurfaceSyncer(11402): Failed to find sync for id=0
-  W/Parcel (11402): Expecting binder but got null!
-
-https://stackoverflow.com/questions/73432326/failed-to-find-sync-for-id-0-in-flutter

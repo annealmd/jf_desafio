@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../domain/domain.dart';
 import '../../infra/infra.dart';
 import '../presenter.dart';
@@ -32,6 +33,7 @@ class _StatePageState extends State<StatePage> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Escolha o seu Estado'),
