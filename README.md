@@ -37,6 +37,16 @@ Melhorias propostas pelo candidato.
 - no emulador ou celular reiniciar o app.
 - para rodar no celular precisa estar no modo dev ativado e ligado ao computador por usb.
 
+[√] Flutter (Channel stable, 3.7.7, on Microsoft Windows [Version 10.0.22621.1413], locale en-GB)
+[√] Windows Version (Installed version of Windows is version 10 or higher)
+[√] Android toolchain - develop for Android devices (Android SDK version 33.0.0)
+[√] Chrome - develop for the web
+[√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.2.3)
+[√] Android Studio (version 2022.1)
+[√] VS Code (version 1.76.2)
+[√] Connected device (3 available)
+[√] HTTP Host Availability
+
 ## Documentação
 
 Para requirements do projeto:
@@ -98,10 +108,10 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 
 ### Melhorias
 
-- Apesar das layers terem sido testadas, seria interessante colocar tratamentos de errors específicos.
-- Nesse caso eu evitaria usar packages com either (fpdart e dartz) e tentaria fazer hardcore.
+- Apesar das layers terem sido testadas, seria interessante colocar tratamentos de errors específicos. Nesse caso eu evitaria usar packages com either (fpdart e dartz) e tentaria fazer hardcore.
 - Aos invés dos 2 blocs, criar apenas 1 RegisterBloc.
 - Colocaria um check_connectivity para primeiramente testar se há acesso a internet.
+- Melhoria no AppTheme (core layer).
 
 ### Referências
 
