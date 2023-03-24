@@ -37,19 +37,19 @@ Melhorias propostas pelo candidato.
 - no emulador ou celular reiniciar o app.
 - para rodar no celular precisa estar no modo dev ativado e ligado ao computador por usb.
 
-[√] Flutter (Channel stable, 3.7.7, on Microsoft Windows [Version 10.0.22621.1413], locale en-GB)
-[√] Windows Version (Installed version of Windows is version 10 or higher)
-[√] Android toolchain - develop for Android devices (Android SDK version 33.0.0)
-[√] Chrome - develop for the web
-[√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.2.3)
-[√] Android Studio (version 2022.1)
-[√] VS Code (version 1.76.2)
-[√] Connected device (3 available)
+[√] Flutter (Channel stable, 3.7.7, on Microsoft Windows [Version 10.0.22621.1413], locale en-GB)   
+[√] Windows Version (Installed version of Windows is version 10 or higher)   
+[√] Android toolchain - develop for Android devices (Android SDK version 33.0.0)   
+[√] Chrome - develop for the web     
+[√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.2.3)    
+[√] Android Studio (version 2022.1)     
+[√] VS Code (version 1.76.2)     
+[√] Connected device (3 available)     
 [√] HTTP Host Availability
 
 ## Documentação
 
-Para requirements do projeto:
+Pasta requirements do projeto:
 
 1. register_usecases.md
 2. register.feature
@@ -121,7 +121,7 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 https://github.com/annealmd/tdd-medicamento
 https://github.com/annealmd/animated_counter
 
-- A minha base de estudo é o Reso Coder, Fluttery e mais recente o Deivid Willyan (aprendendo dart backend).
+- A minha base de estudo são: o Reso Coder, Fluttery e mais recente o Deivid Willyan (aprendendo dart backend).
 
 https://www.youtube.com/watch?v=xV22lglBnig&t=932s&ab_channel=ResoCoder
 https://www.youtube.com/@Flutterly
