@@ -1,5 +1,7 @@
+
 import '../../domain/domain.dart';
 import '../../data/data.dart';
+import '../../presenter/cubit/register_cubit.dart';
 import '../../presenter/presenter.dart';
 import '../infra.dart';
 
@@ -25,12 +27,10 @@ class Injects {
     di.register<IGetStateUsecase>(
         () => GetStateUsecase(repo: di<IGetStateRepository>()));
 
-    //BLoC
-    di.register(
-      () => GetStateBloc(stateUsecase: di<IGetStateUsecase>()),
-    );
+    //BLoC   
 
-    di.register(() => GetCityBloc(di<IGetCityUsecase>()));
-    
+    di.register(() => RegisterCubit(
+        stateUsecase: di<IGetStateUsecase>(),
+        cityUsecase: di<IGetCityUsecase>()));
   }
 }

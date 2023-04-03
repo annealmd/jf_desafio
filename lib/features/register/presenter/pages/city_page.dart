@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../domain/domain.dart';
-import '../../infra/infra.dart';
 import '../presenter.dart';
 
 class CityPage extends StatefulWidget {
@@ -14,62 +15,55 @@ class CityPage extends StatefulWidget {
 }
 
 class _CityPageState extends State<CityPage> {
-  final cityBloc = DependencyInjector().get<GetCityBloc>();
   @override
   void initState() {
-    cityBloc.inputRegister.add(GetCities(id: widget.clientState.id));
+    context.read<RegisterCubit>().getCities(widget.clientState.id);
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    cityBloc.inputRegister.close();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size.width;
+    late List<CityEntity> listCities;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Escolha a sua Cidade'),
         centerTitle: true,
       ),
-      body: StreamBuilder<GetCityState>(
-          stream: cityBloc.outputRegister,
-          builder: (context, snapshot) {
-            if (snapshot.data is GetCityLoading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.data is GetCitySuccess) {
-              List<CityEntity> list =
-                  (snapshot.data?.entityList as List<CityEntity>);
+      body:
+          BlocBuilder<RegisterCubit, RegisterState>(builder: (context, state) {
+        context.read<RegisterCubit>().getCities;
+        if (state is RegisterLoading) {
+          return const CircularProgressIndicator();
+        } else if (state is RegisterGetCitiesSuccess) {
+          listCities = state.cities;
 
-              return Center(
-                child: Container(
-                  color: screenSize > 500
-                      ? const Color.fromARGB(197, 246, 246, 245)
-                      : null,
-                  alignment: Alignment.center,
-                  padding: screenSize > 500
-                      ? const EdgeInsets.all(40)
-                      : const EdgeInsets.all(10),
-                  width: screenSize > 500 ? screenSize * 0.4 : screenSize * 90,
-                  child: ListView.separated(
-                      itemBuilder: (_, i) {
-                        return CityListTile(i, list: list, widget: widget);
-                      },
-                      separatorBuilder: (BuildContext context, _) =>
-                          const Divider(),
-                      itemCount: list.length),
-                ),
-              );
-            } else {
-              return const Center(
-                child: Text('Verifique a sua internet'),
-              );
-            }
-          }),
+          return Center(
+            child: Container(
+              color: screenSize > 500
+                  ? const Color.fromARGB(197, 246, 246, 245)
+                  : null,
+              alignment: Alignment.center,
+              padding: screenSize > 500
+                  ? const EdgeInsets.all(40)
+                  : const EdgeInsets.all(10),
+              width: screenSize > 500 ? screenSize * 0.4 : screenSize * 90,
+              child: ListView.separated(
+                  itemBuilder: (_, i) {
+                    return CityListTile(i, list: listCities, widget: widget);
+                  },
+                  separatorBuilder: (BuildContext context, _) =>
+                      const Divider(),
+                  itemCount: listCities.length),
+            ),
+          );
+        } else {
+          return const Center(
+            child: Text('Verifique a sua internet'),
+          );
+        }
+      }),
     );
   }
 }
