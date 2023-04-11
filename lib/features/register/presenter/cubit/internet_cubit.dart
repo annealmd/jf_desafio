@@ -11,7 +11,7 @@ class InternetCubit extends Cubit<InternetState> {
   late StreamSubscription<ConnectivityResult> connectivityStreamSubscription;
 
   InternetCubit({required this.connectivity}) : super(InternetLoading()) {
-    checkInternet();    
+    //checkInternet();
     monitorSubscription();
   }
   void monitorSubscription() async {
@@ -29,22 +29,9 @@ class InternetCubit extends Cubit<InternetState> {
       }
     });
   }
-
-  Future<void> checkInternet() async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.wifi) {
-      emit(const InternetConnected(connectionType: ConnectionType.wifi));
-    } else if (connectivityResult == ConnectivityResult.mobile) {
-      emit(const InternetConnected(connectionType: ConnectionType.mobile));
-    } else if (connectivityResult == ConnectivityResult.none) {
-      emit(InternetDisconnected());
-    }
-  }
-
   //Be sure to cancel subscription after you are done
 
   void dispose() {
     connectivityStreamSubscription.cancel();
   }
 }
-
