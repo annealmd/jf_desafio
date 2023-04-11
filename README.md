@@ -78,6 +78,8 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 - Core, rotas e tema que são arquivos relacionados a todo o app, feature presente e futuras.
 
 ### State Management
+ #### update RegisterCubit and InternetCubit
+Internet Cubit to monitor the connectivity: package Connectivity_plus implemented as stream
 
 1.  A princípio, usei BLoC (flutter_bloc) mas o dropdown menu as vezes funcionava para os dois campos (estado e cidade) e as vezes funcionava apenas para o campo estado.
 
