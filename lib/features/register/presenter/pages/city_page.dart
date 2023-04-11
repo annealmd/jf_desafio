@@ -15,9 +15,13 @@ class CityPage extends StatefulWidget {
 }
 
 class _CityPageState extends State<CityPage> {
+  Future<void> fetchCities() async {
+    context.read<RegisterCubit>().getCities(widget.clientState.id);
+  }
+
   @override
   void initState() {
-    context.read<RegisterCubit>().getCities(widget.clientState.id);
+    fetchCities();
     super.initState();
   }
 
@@ -31,16 +35,16 @@ class _CityPageState extends State<CityPage> {
         title: const Text('Escolha a sua Cidade'),
         centerTitle: true,
       ),
-      body:
-          BlocBuilder<RegisterCubit, RegisterState>(builder: (context, state) {
-        context.read<RegisterCubit>().getCities;
-        if (state is RegisterLoading) {
-          return const CircularProgressIndicator();
-        } else if (state is RegisterGetCitiesSuccess) {
-          listCities = state.cities;
-
-          return Center(
-            child: Container(
+      body: BlocBuilder<RegisterCubit, RegisterState>(
+        builder: (context, state) {
+          
+          if (state is RegisterLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is RegisterGetCitiesSuccess) {
+            listCities = state.cities;
+            return Container(
               color: screenSize > 500
                   ? const Color.fromARGB(197, 246, 246, 245)
                   : null,
@@ -51,19 +55,23 @@ class _CityPageState extends State<CityPage> {
               width: screenSize > 500 ? screenSize * 0.4 : screenSize * 90,
               child: ListView.separated(
                   itemBuilder: (_, i) {
-                    return CityListTile(i, list: listCities, widget: widget);
+                    return CityListTile(i,
+                        list: listCities, clientState: widget.clientState);
                   },
                   separatorBuilder: (BuildContext context, _) =>
                       const Divider(),
                   itemCount: listCities.length),
-            ),
-          );
-        } else {
-          return const Center(
-            child: Text('Verifique a sua internet'),
-          );
-        }
-      }),
+            );
+          } else if (state is RegisterError) {
+            return Center(
+              child: Text(state.message),
+            );
+          } else {
+            return const SizedBox(
+            );
+          }
+        },
+      ),
     );
   }
 }

@@ -17,51 +17,52 @@ class StatePage extends StatefulWidget {
 
 class _StatePageState extends State<StatePage> {
   @override
-  void initState() {
-    context.read<RegisterCubit>().getStates();
-    super.initState();
+  void dispose() {
+    context.read<InternetCubit>().dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size.width;
-    late List<StateEntity> listStates;
-
+    List<StateEntity> listStates = [];
+    context.read<RegisterCubit>().getStates();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Escolha o seu Estado'),
         centerTitle: true,
       ),
-      body:
-          BlocBuilder<RegisterCubit, RegisterState>(builder: (context, state) {
-        if (state is RegisterLoading) {
-          return const CircularProgressIndicator();
-        } else if (state is RegisterGetStatesSuccess) {
-          listStates = state.states;
-          return Center(
-            child: Container(
-              color: screenSize > 500
-                  ? const Color.fromARGB(197, 246, 246, 245)
-                  : null,
-              alignment: Alignment.center,
-              padding: screenSize > 500
-                  ? const EdgeInsets.all(40)
-                  : const EdgeInsets.all(10),
-              width: screenSize > 500 ? screenSize * 0.4 : screenSize * 0.9,
-              child: ListView.separated(
-                  itemBuilder: (_, i) {
-                    return StateListTile(list: listStates, i);
-                  },
-                  separatorBuilder: (BuildContext context, _) =>
-                      const Divider(),
-                  itemCount: listStates.length),
-            ),
-          );
-        }
-        return const Center(
-          child: Text('Internet not connected'),
-        );
-      }),
+      body: Center(
+        child: Builder(
+          builder: (BuildContext context) {
+            var internetState = context.watch<InternetCubit>().state;
+            var registerState = context.watch<RegisterCubit>().state;
+            if (registerState is RegisterLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (internetState is InternetDisconnected) {
+              return const Center(
+                child: Text("Internet Disconected"),
+              );
+            } else if (registerState is RegisterError &&
+                internetState is InternetConnected) {
+              context.read<RegisterCubit>().getStates();
+              return Center(
+                child: Text(registerState.message),
+              );
+            } else if (registerState is RegisterError) {
+              return Center(
+                child: Text(registerState.message),
+              );
+            } else if (registerState is RegisterGetStatesSuccess) {
+              listStates = registerState.states;
+              return ListContainer(
+                  screenSize: screenSize, listStates: listStates);
+            } else {
+              return const SizedBox();
+            }
+          },
+        ),
+      ),
     );
   }
 }

@@ -10,11 +10,11 @@ class CityListTile extends StatelessWidget {
     this.i, {
     super.key,
     required this.list,
-    required this.widget,
+    required this.clientState,
   });
 
   final List<CityEntity> list;
-  final CityPage widget;
+  final StateEntity clientState;
   int i;
 
   @override
@@ -29,7 +29,7 @@ class CityListTile extends StatelessWidget {
           name: list[i].name,
         );
 
-        var client = ClientEntity(state: widget.clientState, city: clientCity);
+        var client = ClientEntity(state: clientState, city: clientCity);
         DialogBox<ClientEntity>(
                 context: context,
                 route: ClientPage.routeName,

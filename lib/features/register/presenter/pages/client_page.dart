@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jf_desafio/features/register/presenter/pages/pages.dart';
 import 'package:rive/rive.dart';
 
 import '../../domain/domain.dart';
@@ -48,11 +49,11 @@ class _ClientPageState extends State<ClientPage> {
               '${widget.client.state.name} - ${widget.client.state.uf}',
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            // ElevatedButton(
-            //     onPressed: () {
-            //       Navigator.popAndPushNamed(context, '/');
-            //     },
-            //     child: const Text('Reiniciar')),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.popAndPushNamed(context, StatePage.routeName);
+                },
+                child: const Text('Reiniciar')),
           ],
         ),
       ),

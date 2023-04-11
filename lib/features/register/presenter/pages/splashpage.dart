@@ -12,6 +12,7 @@ class Splashpage extends StatefulWidget {
 class _SplashpageState extends State<Splashpage> {
   @override
   void initState() {
+    
     Future.delayed(const Duration(seconds: 2),
         () => Navigator.popAndPushNamed(context, StatePage.routeName));
     super.initState();

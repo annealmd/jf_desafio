@@ -1,7 +1,6 @@
-
+import 'package:connectivity_plus/connectivity_plus.dart';
 import '../../domain/domain.dart';
 import '../../data/data.dart';
-import '../../presenter/cubit/register_cubit.dart';
 import '../../presenter/presenter.dart';
 import '../infra.dart';
 
@@ -26,11 +25,13 @@ class Injects {
         () => GetStateRepository(datasource: di<IGetStateDatasource>()));
     di.register<IGetStateUsecase>(
         () => GetStateUsecase(repo: di<IGetStateRepository>()));
-
-    //BLoC   
-
+    //Internet
+    di.register(() => Connectivity());
+    //BLoC
     di.register(() => RegisterCubit(
         stateUsecase: di<IGetStateUsecase>(),
         cityUsecase: di<IGetCityUsecase>()));
+
+    di.register(() => InternetCubit(connectivity: di<Connectivity>()));
   }
 }
