@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../register/domain/domain.dart';
-import '../../register/presenter/presenter.dart';
+import '../../features/register/domain/domain.dart';
+import '../../features/register/presenter/presenter.dart';
 
 class AppRouter {
   static const String home = '/';

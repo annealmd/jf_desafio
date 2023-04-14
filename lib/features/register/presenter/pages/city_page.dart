@@ -15,30 +15,29 @@ class CityPage extends StatefulWidget {
 }
 
 class _CityPageState extends State<CityPage> {
-  Future<void> fetchCities() async {
-    context.read<RegisterCubit>().getCities(widget.clientState.id);
-  }
+  late List<CityEntity> listCities;
+  late double screenSize;
 
   @override
   void initState() {
-    fetchCities();
+    
+    context.read<RegisterCubit>().getCities(widget.clientState.id);
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size.width;
-    late List<CityEntity> listCities;
+  Widget build(BuildContext context) {    
+        screenSize = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Escolha a sua Cidade'),
         centerTitle: true,
       ),
       body: BlocBuilder<RegisterCubit, RegisterState>(
         builder: (context, state) {
-          
-          if (state is RegisterLoading) {
+          if (state is RegisterGetStatesSuccess) {
             return const Center(
               child: CircularProgressIndicator(),
             );
@@ -67,8 +66,7 @@ class _CityPageState extends State<CityPage> {
               child: Text(state.message),
             );
           } else {
-            return const SizedBox(
-            );
+            return const SizedBox();
           }
         },
       ),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jf_desafio/features/core/theme/app_theme.dart';
-import 'features/core/router/app_router.dart';
+import 'package:jf_desafio/core/theme/app_theme.dart';
+import 'core/router/app_router.dart';
 import 'features/register/infra/infra.dart';
 import 'features/register/presenter/presenter.dart';
 
 void main() {
-  Injects.init();
+   Injects.init();
   runApp(const MyApp());
 }
 

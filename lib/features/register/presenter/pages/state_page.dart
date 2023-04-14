@@ -16,6 +16,14 @@ class StatePage extends StatefulWidget {
 }
 
 class _StatePageState extends State<StatePage> {
+  List<StateEntity> listStates = [];
+  late double screenSize;
+  @override
+  void initState() {
+    context.read<RegisterCubit>().getStates();
+    super.initState();
+  }
+
   @override
   void dispose() {
     context.read<InternetCubit>().dispose();
@@ -24,11 +32,10 @@ class _StatePageState extends State<StatePage> {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size.width;
-    List<StateEntity> listStates = [];
-    context.read<RegisterCubit>().getStates();
+    screenSize = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Escolha o seu Estado'),
         centerTitle: true,
       ),
@@ -37,7 +44,8 @@ class _StatePageState extends State<StatePage> {
           builder: (BuildContext context) {
             var internetState = context.watch<InternetCubit>().state;
             var registerState = context.watch<RegisterCubit>().state;
-            if (registerState is RegisterLoading) {
+            if (registerState is RegisterLoading ||
+                registerState is RegisterGetCitiesSuccess) {
               return const Center(child: CircularProgressIndicator());
             } else if (internetState is InternetDisconnected) {
               return const Center(
@@ -51,7 +59,10 @@ class _StatePageState extends State<StatePage> {
               );
             } else if (registerState is RegisterError) {
               return Center(
-                child: Text(registerState.message),
+                child: Text(
+                  "Check a internet \n ${registerState.message}",
+                  textAlign: TextAlign.center,
+                ),
               );
             } else if (registerState is RegisterGetStatesSuccess) {
               listStates = registerState.states;
