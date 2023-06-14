@@ -12,6 +12,10 @@ on:
 
 jobs:
   flutter_test:
+    permissions:
+      id-token: write
+      contents: read
+      checks: write
     name: Run flutter analyze and flutter_test
     runs-on: ubuntu-latest
     steps:
@@ -33,6 +37,7 @@ jobs:
           name: test-results
           path: test-results.json
           reporter: flutter-json
+
       - uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
         with:
           min_coverage: 15
