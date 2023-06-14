@@ -24,8 +24,8 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter analyze
-      - run: flutter format --dry-run --set-exit-if-changed lib/
-      - run: flutter format --dry-run --set-exit-if-changed test/
+      - run: dart format --output=none --set-exit-if-changed lib/
+      - run: dart format --output=none --set-exit-if-changed test/
       - run: flutter test --coverage
       - run: flutter test --machine > test-results.json
       - uses: dorny/test-reporter@v1.4.2
@@ -36,5 +36,3 @@ jobs:
       - uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
         with:
           min_coverage: 15
-
-
