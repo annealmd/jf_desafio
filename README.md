@@ -37,14 +37,14 @@ Melhorias propostas pelo candidato.
 - no emulador ou celular reiniciar o app.
 - para rodar no celular precisa estar no modo dev ativado e ligado ao computador por usb.
 
-[√] Flutter (Channel stable, 3.7.7, on Microsoft Windows [Version 10.0.22621.1413], locale en-GB)   
-[√] Windows Version (Installed version of Windows is version 10 or higher)   
-[√] Android toolchain - develop for Android devices (Android SDK version 33.0.0)   
-[√] Chrome - develop for the web     
-[√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.2.3)    
-[√] Android Studio (version 2022.1)     
-[√] VS Code (version 1.76.2)     
-[√] Connected device (3 available)     
+[√] Flutter (Channel stable, 3.7.7, on Microsoft Windows [Version 10.0.22621.1413], locale en-GB)  
+[√] Windows Version (Installed version of Windows is version 10 or higher)  
+[√] Android toolchain - develop for Android devices (Android SDK version 33.0.0)  
+[√] Chrome - develop for the web  
+[√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.2.3)  
+[√] Android Studio (version 2022.1)  
+[√] VS Code (version 1.76.2)  
+[√] Connected device (3 available)  
 [√] HTTP Host Availability
 
 ## Documentação
@@ -78,22 +78,14 @@ https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios?orde
 - Core, rotas e tema que são arquivos relacionados a todo o app, feature presente e futuras.
 
 ### State Management
- #### update RegisterCubit and InternetCubit
+
+#### update RegisterCubit and InternetCubit
+
 Internet Cubit to monitor the connectivity: package Connectivity_plus implemented as stream
 
-1.  A princípio, usei BLoC (flutter_bloc) mas o dropdown menu as vezes funcionava para os dois campos (estado e cidade) e as vezes funcionava apenas para o campo estado.
+1. Register Cubit para registrar os dados
 
-- Nessa tentativa, criei o estado de sucesso genérico <T> para poder voltar lista de duas entidades diferentes (city e state).
-- Acredito que o erro foi ter esquecido de usar uma estrutura condicional ( if GetStateEvent if else GetCityEvent ).
-
-2. Então resolvi fazer apenas com o dart streams e colocar broadcast, mas tb não obtive sucesso.
-   Por fim, criei 2 blocs (estado e cidade) usando streams puro e não a biblioteca pronta.
-   Talvez a decisão de usar o provider fosse mais interessante.
-
-3. Nesse ponto a optei por fazer 2 pages ao invés de 1 com dropdown menu foi tomada devido ao extra paginação do desafio.
-
-4. Tentei colocar check_connectivity para checar o estado da internet, porém apesar de estar no yaml, o package não ficou disponível p o projeto. Poderia procurar a solução do problema mais profundamente, mas acredito que no momento se eu emitir um StateError é o suficiente.
-   https://pub.dev/packages/internet_connection_checker/example
+2. Internet Cubit para checar se há conexão e depois monitorar a conexão de internet
 
 #### SOLID
 
@@ -111,9 +103,8 @@ Internet Cubit to monitor the connectivity: package Connectivity_plus implemente
 ### Melhorias
 
 - Apesar das layers terem sido testadas, seria interessante colocar tratamentos de errors específicos. Nesse caso eu evitaria usar packages com either (fpdart e dartz) e tentaria fazer hardcore.
-- Aos invés dos 2 blocs, criar apenas 1 RegisterBloc.
-- Colocaria um check_connectivity para primeiramente testar se há acesso a internet.
 - Melhoria no AppTheme (core layer).
+- ver atualizações nas classes do dart 3.0
 
 ### Referências
 
