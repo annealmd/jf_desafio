@@ -28,5 +28,3 @@ void main() {
     expect(result.first.uf, 'MG');
   });
 }
-
-

@@ -12,7 +12,6 @@ void main() {
     test('Should return a HttpResponse', () async {
       final result = await sut.getState();
       expect(result, isA<HttpResponse>());
-      
     });
 
     test('Should return a Success(200)', () async {

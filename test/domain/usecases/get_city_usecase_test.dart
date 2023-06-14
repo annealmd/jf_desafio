@@ -10,18 +10,19 @@ void main() {
   late CityEntity tCity;
   setUp(() {
     repo = MockGetCityRepo();
-    sut = GetCityUsecase(repo: repo);    
+    sut = GetCityUsecase(repo: repo);
     tCity = CityEntity(name: 'Montes Claros');
   });
   test('Should return the correct object type', () async {
-    when(() => repo(id:any(named: 'id'))).thenAnswer((invocation) async => [tCity]);
+    when(() => repo(id: any(named: 'id')))
+        .thenAnswer((invocation) async => [tCity]);
     var result = await sut(id: 5);
     expect(result, isA<List<CityEntity>>());
   });
   test('Should return the correct instance', () async {
-    when(() => repo(id:any(named: 'id'))).thenAnswer((invocation) async => [tCity]);
+    when(() => repo(id: any(named: 'id')))
+        .thenAnswer((invocation) async => [tCity]);
     var result = await sut(id: 5);
     expect(result.first.name, 'Montes Claros');
   });
 }
-
