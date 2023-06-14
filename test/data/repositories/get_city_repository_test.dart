@@ -17,16 +17,17 @@ void main() {
   });
 
   test('Should return a List<CityEntity> when called', () async {
-    when(() => datasource.call(id:any(named: 'id'))).thenAnswer((invocation) async => [tModel] );
+    when(() => datasource.call(id: any(named: 'id')))
+        .thenAnswer((invocation) async => [tModel]);
     var result = await sut.call(id: 5);
-    verify(() => datasource(id:5)).called(1);
+    verify(() => datasource(id: 5)).called(1);
     expect(result, isA<List<CityEntity>>());
   });
 
   test('Should return the correct instance when called', () async {
-    when(() => datasource.call(id:any(named: 'id'))).thenAnswer((invocation) async => [tModel]);
-    var result = await sut.call(id:5);
+    when(() => datasource.call(id: any(named: 'id')))
+        .thenAnswer((invocation) async => [tModel]);
+    var result = await sut.call(id: 5);
     expect(result.first.name, 'testCity');
   });
 }
-

@@ -2,16 +2,15 @@ name: CI
 
 on:
   push:
-    branches:
-      - develop
-      - main
-  pull_request:
-    branches:
-      - develop
-      - main
+    tags:
+      - v*
 
 jobs:
   flutter_test:
+    permissions:
+      id-token: write
+      contents: read
+      checks: write
     name: Run flutter analyze and flutter_test
     runs-on: ubuntu-latest
     steps:

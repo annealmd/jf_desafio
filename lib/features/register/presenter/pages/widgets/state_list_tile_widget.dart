@@ -5,7 +5,8 @@ import '../../presenter.dart';
 
 // ignore: must_be_immutable
 class StateListTile extends StatelessWidget {
-   StateListTile(this.i,{
+  StateListTile(
+    this.i, {
     super.key,
     required this.list,
   });
