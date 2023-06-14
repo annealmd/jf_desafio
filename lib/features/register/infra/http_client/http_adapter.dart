@@ -6,7 +6,6 @@ class HttpAdapter implements IHttpClient {
 
   @override
   Future<HttpResponse> getCity({required int id}) async {
-    
     String url =
         'https://servicodados.ibge.gov.br/api/v1/localidades/estados/$id/municipios?orderBy=nome';
     final response = await client.get(Uri.parse(url));

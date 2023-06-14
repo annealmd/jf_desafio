@@ -6,7 +6,7 @@ import 'features/register/infra/infra.dart';
 import 'features/register/presenter/presenter.dart';
 
 void main() {
-   Injects.init();
+  Injects.init();
   runApp(const MyApp());
 }
 

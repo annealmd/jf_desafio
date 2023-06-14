@@ -19,13 +19,13 @@ class _CityPageState extends State<CityPage> {
   late double screenSize;
 
   @override
-  void initState() {    
+  void initState() {
     context.read<RegisterCubit>().getCities(widget.clientState.id);
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     screenSize = MediaQuery.of(context).size.width;
 
     return Scaffold(
