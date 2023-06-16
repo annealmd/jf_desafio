@@ -1,4 +1,4 @@
-name: CI
+name: CI|CD
 
 on:
   push:
@@ -53,5 +53,5 @@ jobs:
         with:
           artifacts: "build/app/outputs/apk/debug/*, build/app/outputs/bundle/release/*, build/ios/iphoneos/app.ipa"
           #artifacts: "build/app/outputs/bundle/release/*"
-          tag: v1.0.${{github.run_number}}
-          #token: ${{secrets.GITHUB_TOKEN}}
+          tag: v1.0.${{ github.run_number }}
+          #token: ${{ secrets.GITHUB_TOKEN }}
