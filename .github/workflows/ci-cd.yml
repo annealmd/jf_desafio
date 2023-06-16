@@ -53,7 +53,8 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build ipa --obfuscate --split-debug-info
+      - run: flutter build ipa
+      #- run: flutter build ipa --obfuscate --split-debug-info
       - name: Upload ipa
         uses: actions/upload-artifact@v3
         with:
