@@ -106,6 +106,7 @@ Internet Cubit to monitor the connectivity: package Connectivity_plus implemente
 
 - Apesar das layers terem sido testadas, seria interessante colocar tratamentos de errors específicos. Nesse caso eu evitaria usar packages com either (fpdart e dartz) e tentaria fazer hardcore.
 - Melhoria no AppTheme (core layer).
+- ver atualizações nas classes do dart 3.0
 
 ### Referências
 

@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI|CD
 
 on:
   push:
@@ -12,8 +12,8 @@ jobs:
       contents: read
       checks: write
     name: Run flutter analyze and flutter_test
-    #runs-on: ubuntu-latest
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+    #runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v1
@@ -22,6 +22,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
+      - run: flutter doctor -v
       - run: flutter --version
       - run: flutter pub get
       - run: flutter analyze
@@ -37,21 +38,65 @@ jobs:
       - uses: VeryGoodOpenSource/very_good_coverage@v2
         with:
           min_coverage: 15
-      - run: flutter build apk --debug --split-per-abi
-      - run: flutter build appbundle
-      #- run: flutter build appbundle
-      - run: |
-          flutter build ios --release --no-codesign
-          cd build/ios/iphoneos
-          mkdir Payload
-          cd Payload
-          ln -s ../Runner.app
-          cd ..
-          zip -r app.ipa Payload
-      - name: Build to Releases
-        uses: ncipollo/release-action@v1
+
+  build_ios:
+    name: Build Flutter (iOS)
+    needs: [flutter_test]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v1
         with:
-          artifacts: "build/app/outputs/apk/debug/*, build/app/outputs/bundle/release/*, build/ios/iphoneos/app.ipa"
-          #artifacts: "build/app/outputs/bundle/release/*"
-          tag: v1.0.${{github.run_number}}
-          #token: ${{secrets.GITHUB_TOKEN}}
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - run: flutter pub get
+      - run: flutter clean
+      - run: flutter build ipa
+      #- run: flutter build ipa --obfuscate --split-debug-info
+      - name: Upload ipa
+        uses: actions/upload-artifact@v3
+        with:
+          name: ipabundle
+          path: build/ios/ipa/*.ipa
+          #path: build/ios/ipa
+
+  build_appbundle:
+    name: Build Flutter (Android)
+    needs: [flutter_test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - run: flutter pub get
+      - run: flutter clean
+      - run: flutter build appbundle
+      - name: Upload appbundle
+        uses: actions/upload-artifact@v3
+        with:
+          name: appbundle
+          path: build/app/outputs/bundle/release/*.aab
+          #path: build/app/outputs/bundle/release/app-release.aab
+
+    #- run: flutter build appbundle
+    # - run: |
+    #     flutter build ios --release --no-codesign
+    #     cd build/ios/iphoneos
+    #     mkdir Payload
+    #     cd Payload
+    #     ln -s ../Runner.app
+    #     cd ..
+    #     zip -r app.ipa Payload
+    # - name: Build to Releases
+    #   uses: ncipollo/release-action@v1
+    #   with:
+    #     artifacts: "build/app/outputs/apk/debug/*, build/app/outputs/bundle/release/*, build/ios/iphoneos/app.ipa"
+    #     #artifacts: "build/app/outputs/bundle/release/*"
+    #     tag: v1.0.${{ github.run_number }}
+    #     #token: ${{ secrets.GITHUB_TOKEN }}
