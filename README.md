@@ -129,4 +129,4 @@ https://www.youtube.com/watch?v=0QgJWdbcHOY&ab_channel=WilliamSilva
 ![](jf_gif.gif)
 
 
-Aproveitando p testar integração com gitlab safe webhook
+Testando o Gitlab integration
