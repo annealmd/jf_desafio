@@ -1,7 +1,13 @@
+clone_project:
+  state: test
+  script:
+    - git clone https://annealmd:$TARGET_TOKEN@github.com/annealmd/jf_desafio.git
+
 code_quality:
   stage: test
   image: "ghcr.io/cirruslabs/flutter:3.10.3"
   before_script:
+    - git clone https://github.com/annealmd/jf_desafio.git
     - flutter pub global activate dart_code_metrics
     - export PATH="$PATH:$HOME/.pub-cache/bin"
   script:
