@@ -129,4 +129,3 @@ https://www.youtube.com/watch?v=0QgJWdbcHOY&ab_channel=WilliamSilva
 ![](jf_gif.gif)
 
 
-You must work, it must work
