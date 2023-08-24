@@ -14,6 +14,6 @@ jobs:
           fetch-depth: 0
       - uses: wangchucheng/git-repo-sync@master
         with:
-          target-url: "https://gitlab.com/daniel.azevedo/test-repo-sync"
-          target-username: "daniel.azevedo"
+          target-url: "https://gitlab.com/annealmd/jf_desafio"
+          target-username: "annealmd"
           target-token: "glpat-dmcxLjKgx31pt2Tym-oS"
