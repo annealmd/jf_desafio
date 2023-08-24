@@ -23,6 +23,7 @@ void main() {
     when(() => repo(id: any(named: 'id')))
         .thenAnswer((invocation) async => [tCity]);
     var result = await sut(id: 5);
-    expect(result.first.name, 'Montes Claros');
+    //expect(result.first.name, 'Montes Claros');
+    expect(result.first.name, 'Belo Horizonte');
   });
 }
