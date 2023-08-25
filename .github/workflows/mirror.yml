@@ -1,0 +1,22 @@
+name: mirror
+
+on:
+  - push
+  - delete
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    name: Git Repo Sync
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: wangchucheng/git-repo-sync@master
+        with:
+          target-url: ${{ secrets.TARGET_URL }}
+          target-username: ${{ secrets.TARGET_USERNAME }}
+          target-token: ${{ secrets.TARGET_TOKEN }}
+
+          # target-url: "https://gitlab.com/annealmd/jf_desafio.git"
+          # target-username: "annealmd"
